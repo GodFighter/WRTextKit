@@ -13,6 +13,10 @@
 		BBC850B123A0C50A00999198 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = BBC850B023A0C50A00999198 /* Assets.xcassets */; };
 		BBC850B423A0C50A00999198 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = BBC850B223A0C50A00999198 /* LaunchScreen.storyboard */; };
 		BBC850B723A0C50A00999198 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = BBC850B623A0C50A00999198 /* main.m */; };
+		BBC850C023A0C6AE00999198 /* WRVerticalLabel.m in Sources */ = {isa = PBXBuildFile; fileRef = BBC850BF23A0C6AE00999198 /* WRVerticalLabel.m */; };
+		BBC850C423A0C6DE00999198 /* WRTextLayout.m in Sources */ = {isa = PBXBuildFile; fileRef = BBC850C323A0C6DE00999198 /* WRTextLayout.m */; };
+		BBC850C723A0C6F200999198 /* WRTextLine.m in Sources */ = {isa = PBXBuildFile; fileRef = BBC850C623A0C6F200999198 /* WRTextLine.m */; };
+		BBC850CA23A0CCDD00999198 /* MongolQaganTig.ttf in Resources */ = {isa = PBXBuildFile; fileRef = BBC850C923A0CCDD00999198 /* MongolQaganTig.ttf */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -26,6 +30,13 @@
 		BBC850B323A0C50A00999198 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		BBC850B523A0C50A00999198 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		BBC850B623A0C50A00999198 /* main.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
+		BBC850BE23A0C6AE00999198 /* WRVerticalLabel.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = WRVerticalLabel.h; sourceTree = "<group>"; };
+		BBC850BF23A0C6AE00999198 /* WRVerticalLabel.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = WRVerticalLabel.m; sourceTree = "<group>"; };
+		BBC850C223A0C6DE00999198 /* WRTextLayout.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = WRTextLayout.h; sourceTree = "<group>"; };
+		BBC850C323A0C6DE00999198 /* WRTextLayout.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = WRTextLayout.m; sourceTree = "<group>"; };
+		BBC850C523A0C6F200999198 /* WRTextLine.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = WRTextLine.h; sourceTree = "<group>"; };
+		BBC850C623A0C6F200999198 /* WRTextLine.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = WRTextLine.m; sourceTree = "<group>"; };
+		BBC850C923A0CCDD00999198 /* MongolQaganTig.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = MongolQaganTig.ttf; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -67,8 +78,40 @@
 				BBC850B223A0C50A00999198 /* LaunchScreen.storyboard */,
 				BBC850B523A0C50A00999198 /* Info.plist */,
 				BBC850B623A0C50A00999198 /* main.m */,
+				BBC850C823A0CCC200999198 /* Resource */,
+				BBC850BD23A0C66900999198 /* WRTextKit */,
 			);
 			path = WRTextKitDemo;
+			sourceTree = "<group>";
+		};
+		BBC850BD23A0C66900999198 /* WRTextKit */ = {
+			isa = PBXGroup;
+			children = (
+				BBC850BE23A0C6AE00999198 /* WRVerticalLabel.h */,
+				BBC850BF23A0C6AE00999198 /* WRVerticalLabel.m */,
+				BBC850C123A0C6BE00999198 /* CoreText */,
+			);
+			name = WRTextKit;
+			path = ../../WRTextKit;
+			sourceTree = "<group>";
+		};
+		BBC850C123A0C6BE00999198 /* CoreText */ = {
+			isa = PBXGroup;
+			children = (
+				BBC850C223A0C6DE00999198 /* WRTextLayout.h */,
+				BBC850C323A0C6DE00999198 /* WRTextLayout.m */,
+				BBC850C523A0C6F200999198 /* WRTextLine.h */,
+				BBC850C623A0C6F200999198 /* WRTextLine.m */,
+			);
+			path = CoreText;
+			sourceTree = "<group>";
+		};
+		BBC850C823A0CCC200999198 /* Resource */ = {
+			isa = PBXGroup;
+			children = (
+				BBC850C923A0CCDD00999198 /* MongolQaganTig.ttf */,
+			);
+			path = Resource;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -130,6 +173,7 @@
 			files = (
 				BBC850B423A0C50A00999198 /* LaunchScreen.storyboard in Resources */,
 				BBC850B123A0C50A00999198 /* Assets.xcassets in Resources */,
+				BBC850CA23A0CCDD00999198 /* MongolQaganTig.ttf in Resources */,
 				BBC850AF23A0C50600999198 /* Main.storyboard in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -144,6 +188,9 @@
 				BBC850AC23A0C50600999198 /* ViewController.m in Sources */,
 				BBC850A623A0C50600999198 /* AppDelegate.m in Sources */,
 				BBC850B723A0C50A00999198 /* main.m in Sources */,
+				BBC850C423A0C6DE00999198 /* WRTextLayout.m in Sources */,
+				BBC850C023A0C6AE00999198 /* WRVerticalLabel.m in Sources */,
+				BBC850C723A0C6F200999198 /* WRTextLine.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
