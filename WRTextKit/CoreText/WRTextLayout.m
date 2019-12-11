@@ -16,6 +16,10 @@
 @property (nonatomic, readwrite) CTFramesetterRef ctFrameSetter;
 @property (nonatomic, readwrite) CTFrameRef ctFrame;
 
+@property (nonatomic, readwrite) CGSize bounds;
+
+@property (nonatomic, assign) NSUInteger lastLineNumber;
+
 @end
 
 @implementation WRTextLayout
@@ -26,6 +30,7 @@
         self.vertical = YES;
         self.verticalAlignment = WRTextVerticalAlignmentLeading;
         self.horizontalAlignment = WRTextHorizontalAlignmentCenter;
+        self.lastLineNumber = INT_MAX;
     }
     return self;
 }
@@ -34,7 +39,8 @@
     if (CGSizeEqualToSize(containerSize, _containerSize)) {
         return;
     }
-    _containerSize = CGSizeMake(self.vertical ? containerSize.height : containerSize.width, self.vertical ? containerSize.height : containerSize.width);
+    self.bounds = containerSize;
+    _containerSize = CGSizeMake(MAX(containerSize.width, containerSize.height), MAX(containerSize.width, containerSize.height));
     [self calculationcLayout];
 }
 
@@ -81,7 +87,15 @@
         CGPoint position;
         position.x = cgPathBox.origin.x + lineOrigin.x;
         position.y = cgPathBox.size.height + cgPathBox.origin.y - lineOrigin.y;
+        
+        
         WRTextLine* foLine = [[WRTextLine alloc] initWithCTLine:ctLine position:position vertical:self.vertical];
+        
+        if (foLine.position.x + foLine.bounds.size.width > self.bounds.width) {
+            self.lastLineNumber = i;
+            break;
+        }
+        
         [self.textLines addObject:foLine];
         if (i == 0)
             textBoundingRect = foLine.bounds;

@@ -38,6 +38,7 @@
 - (instancetype)initWithCTLine:(CTLineRef)ctLine position:(CGPoint)position vertical:(BOOL)vertical{
     self = [super init];
     if(self){
+        self.lastLine = NO;
         _vertical = vertical;
         _position = position;
         [self setCtLine:ctLine];

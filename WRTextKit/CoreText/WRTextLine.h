@@ -41,7 +41,7 @@ typedef NS_ENUM(NSUInteger, WRTextRunGlyphDrawMode) {
 
 @property (nonatomic, readonly) NSRange range;
 
-@property (nonatomic, readonly) CGPoint position;
+@property (nonatomic, readwrite) CGPoint position;
 
 @property (nonatomic, readonly) BOOL vertical;
 
@@ -58,6 +58,7 @@ typedef NS_ENUM(NSUInteger, WRTextRunGlyphDrawMode) {
 @property (nonatomic, readonly) CGFloat lineHeight;
 
 @property (nonatomic, readonly) CGFloat lineWidth;
+
 
 - (instancetype)initWithCTLine:(CTLineRef)ctLine position:(CGPoint)position vertical:(BOOL)vertical;
 
