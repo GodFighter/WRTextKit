@@ -24,12 +24,18 @@
     if (self = [super init]) {
         self.containerSize = CGSizeZero;
         self.vertical = YES;
+        self.verticalAlignment = WRTextVerticalAlignmentLeading;
+        self.horizontalAlignment = WRTextHorizontalAlignmentCenter;
     }
     return self;
 }
 
 - (void)setContainerSize:(CGSize)containerSize {
+    if (CGSizeEqualToSize(containerSize, _containerSize)) {
+        return;
+    }
     _containerSize = CGSizeMake(self.vertical ? containerSize.height : containerSize.width, self.vertical ? containerSize.height : containerSize.width);
+    [self calculationcLayout];
 }
 
 - (void)setText:(NSAttributedString *)text {
@@ -38,7 +44,7 @@
     [self calculationcLayout];
 }
 
-#pragma mark - 计算
+#pragma mark - Calculation
 - (void)calculationcLayout {
     if (self.text.length == 0 || CGSizeEqualToSize(self.containerSize, CGSizeZero)) return;
 
@@ -132,12 +138,14 @@
     
     NSArray *lines = self.textLines;
     
-    CGFloat verticalOffset = self.vertical ? (size.width - self.textBoundingSize.width) / 2.0 : 0;
+//    CGFloat verticalOffset = self.vertical ? (size.width - self.textBoundingSize.width) / 2.0 : 0;
+//    CGFloat horizontalOffset = self.vertical ? (size.width - self.textBoundingSize.width) / 2.0 : 0;
 
     for (NSUInteger l = 0, lMax = lines.count; l < lMax; l++) {
         WRTextLine *line = lines[l];
         NSArray *lineRunRanges = line.verticalTextRange;
-        CGFloat posX = line.position.x + verticalOffset;
+        CGFloat posX = line.position.x;
+        
         CGFloat posY = size.height - line.position.y;
         CFArrayRef runs = CTLineGetGlyphRuns(line.ctLine);
         for (NSUInteger r = 0, rMax = CFArrayGetCount(runs); r < rMax; r++) {
@@ -145,7 +153,7 @@
             CGContextSetTextMatrix(context, CGAffineTransformIdentity);
             CGContextSetTextPosition(context, posX, posY);
             //            YYTextDrawRun(line, run, context, size, isVertical, lineRunRanges[r], verticalOffset);
-            [self drawLine:line run:run context:context size:size range:[lineRunRanges objectAtIndex:r] verticalOffset:verticalOffset];
+            [self drawLine:line run:run context:context size:size range:[lineRunRanges objectAtIndex:r]];
         }
     }
     
@@ -153,7 +161,7 @@
     
 }
 
-- (void)drawLine:(WRTextLine*)line run:(CTRunRef)run context:(CGContextRef)context size:(CGSize)size range:(NSArray *)runRanges verticalOffset:(CGFloat)verticalOffset{
+- (void)drawLine:(WRTextLine*)line run:(CTRunRef)run context:(CGContextRef)context size:(CGSize)size range:(NSArray *)runRanges {
     CGContextSaveGState(context);
     {
         CTLineRef ctLine = line.ctLine;
@@ -162,8 +170,39 @@
 
         for (CFIndex j = 0; j < runCount; ++j) {
             CTRunRef run = CFArrayGetValueAtIndex(runArray, j);
-                        
-            CGContextSetTextPosition(context, line.position.x, line.position.y);
+                   
+            CGFloat horizontalOffset = self.vertical ? (size.width - self.textBoundingSize.width) / 2.0 : 0;
+            switch (self.horizontalAlignment) {
+                case WRTextHorizontalAlignmentLeading:
+                    horizontalOffset = 0;
+                    break;
+                    
+                case WRTextHorizontalAlignmentCenter:
+                    horizontalOffset = (size.width - self.textBoundingSize.width) / 2.0;
+                    break;
+
+                default:
+                    horizontalOffset = size.width - self.textBoundingSize.width;
+                    break;
+            }
+
+            
+            CGFloat verticalOffset = line.position.y;
+            switch (self.verticalAlignment) {
+                case WRTextVerticalAlignmentCenter:
+                    verticalOffset = line.position.y - (size.height - line.bounds.size.height) / 2.0;
+                    break;
+                    
+                case WRTextVerticalAlignmentTrailing:
+                    verticalOffset = line.position.y  - size.height + line.bounds.size.height;
+                    break;
+
+                default:
+                    break;
+            }
+
+            
+            CGContextSetTextPosition(context, line.position.x, verticalOffset);
 //            if (i > self.container.displayLineCount) {
 //                return;
 //            }
@@ -174,7 +213,7 @@
             transform3d = CATransform3DRotate(transform3d, M_PI_2 * 3, 0, 0, 1);
             CGAffineTransform transform = CATransform3DGetAffineTransform(transform3d);
             CGContextSetTextMatrix(context, transform);
-            CGContextSetTextPosition(context, line.position.x + verticalOffset, self.containerSize.height);
+            CGContextSetTextPosition(context, line.position.x + horizontalOffset, self.containerSize.height + verticalOffset);
             CTRunDraw(run, context, CFRangeMake(0, 0));
 
         }

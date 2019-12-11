@@ -7,6 +7,7 @@
 //
 
 #import <UIKit/UIKit.h>
+#import "WRTextLayout.h"
 
 NS_ASSUME_NONNULL_BEGIN
 
@@ -15,6 +16,8 @@ NS_ASSUME_NONNULL_BEGIN
 @property (null_resettable, nonatomic, copy) NSString *text;
 
 @property (nullable, nonatomic, strong) UIFont *font;
+
+@property (nonatomic) WRTextVerticalAlignment verticalAlignment;
 
 @end
 

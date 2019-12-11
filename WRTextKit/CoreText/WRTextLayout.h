@@ -12,10 +12,16 @@
 NS_ASSUME_NONNULL_BEGIN
 
 //MARK:-enum
-typedef NS_ENUM(NSInteger,WRTextAlignment) {
-    WRTextAlignmentLeft,
-    WRTextAlignmentCenter,
-    WRTextAlignmentRight
+typedef NS_ENUM(NSInteger,WRTextVerticalAlignment) {
+    WRTextVerticalAlignmentLeading,
+    WRTextVerticalAlignmentCenter,
+    WRTextVerticalAlignmentTrailing
+};
+
+typedef NS_ENUM(NSInteger,WRTextHorizontalAlignment) {
+    WRTextHorizontalAlignmentLeading,
+    WRTextHorizontalAlignmentCenter,
+    WRTextHorizontalAlignmentTrailing
 };
 
 //MARK:-
@@ -31,7 +37,10 @@ typedef NS_ENUM(NSInteger,WRTextAlignment) {
 
 @property (nonatomic, assign, readonly) CGSize textBoundingSize;
 
-@property (nonatomic, assign) WRTextAlignment textAlignment;
+@property (nonatomic, assign) WRTextVerticalAlignment verticalAlignment;
+@property (nonatomic, assign) WRTextHorizontalAlignment horizontalAlignment;
+
+- (void)calculationcLayout;
 
 - (void)drawInContext:(CGContextRef)context size:(CGSize)size;
 

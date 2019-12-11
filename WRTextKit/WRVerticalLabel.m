@@ -6,7 +6,6 @@
 //  Copyright © 2019 项辉. All rights reserved.
 //
 
-#import "WRTextLayout.h"
 #import "WRVerticalLabel.h"
 
 @interface WRVerticalLabel ()
@@ -21,6 +20,7 @@
 - (instancetype)init {
     if (self = [super init]) {
         _font = [UIFont systemFontOfSize:15];
+        _verticalAlignment = WRTextVerticalAlignmentLeading;
     }
     return self;
 }
@@ -33,11 +33,10 @@
     if (self.font) {
         [self.innerText addAttribute:NSFontAttributeName value:self.font range:NSMakeRange(0, _text.length)];
         
-        
-        NSMutableParagraphStyle *paragraphStyle =  [[NSMutableParagraphStyle alloc] init];
-        paragraphStyle.lineBreakMode = NSLineBreakByTruncatingMiddle;
-
-        [self.innerText addAttribute:NSParagraphStyleAttributeName value:paragraphStyle range:NSMakeRange(0, _text.length)];
+//        NSMutableParagraphStyle *paragraphStyle =  [[NSMutableParagraphStyle alloc] init];
+//        paragraphStyle.lineBreakMode = NSLineBreakByTruncatingMiddle;
+//
+//        [self.innerText addAttribute:NSParagraphStyleAttributeName value:paragraphStyle range:NSMakeRange(0, _text.length)];
     }
     self.textLayout.text = self.innerText;
     [self layoutIfNeeded];
@@ -55,16 +54,25 @@
 
     self.textLayout.text = self.innerText;
 //    self.frame = CGRectMake(100, 100, self.textLayout.textBoundingSize.width, self.textLayout.textBoundingSize.height);
+
+    [self layoutIfNeeded];
 }
 
 - (void)setFrame:(CGRect)frame {
     [super setFrame:frame];
     
-    self.textLayout.containerSize = frame.size;
+//    self.textLayout.containerSize = frame.size;
+    [self layoutIfNeeded];
+}
+
+- (void)setTextAlignment:(WRTextVerticalAlignment)textAlignment {
+    _verticalAlignment = textAlignment;
+    self.textLayout.verticalAlignment = _verticalAlignment;
     [self layoutIfNeeded];
 }
 
 - (void)drawRect:(CGRect)rect {
+    self.textLayout.containerSize = rect.size;
     [self.textLayout drawInContext:UIGraphicsGetCurrentContext() size:self.bounds.size];
 }
 
@@ -72,8 +80,7 @@
 - (WRTextLayout *)textLayout {
     if (!_textLayout) {
         _textLayout = [WRTextLayout new];
-        _textLayout.containerSize = CGSizeMake(200, 200);
-        _textLayout.textAlignment = WRTextAlignmentCenter;
+        _textLayout.containerSize = CGSizeZero;
     }
     return _textLayout;
 }
