@@ -75,7 +75,7 @@
 
     CTFrameGetLineOrigins(ctFrame, CFRangeMake(0, lineCount), lineOrigins);
 
-    for (NSUInteger i = 0; i < lineCount;  i ++) {
+    for (NSUInteger i = 0; i < MIN(lineCount, self.lastLineNumber - 1);  i ++) {
         CTLineRef ctLine = CFArrayGetValueAtIndex(ctLines, i);
         CFArrayRef ctRuns = CTLineGetGlyphRuns(ctLine);
         
