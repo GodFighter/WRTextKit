@@ -15,13 +15,14 @@ NS_ASSUME_NONNULL_BEGIN
 
 @property (null_resettable, nonatomic, copy) NSString *text;
 
-@property (nullable, nonatomic, strong) UIFont *font;
 
 @property (nonatomic) WRTextVerticalAlignment verticalAlignment;
 @property (nonatomic) WRTextHorizontalAlignment horizontalAlignment;
 
 @property (nonatomic) NSLineBreakMode lineBreakMode;
 
+@property (nullable, nonatomic, strong)IBInspectable UIFont *font;
+@property (nullable, nonatomic, strong)IBInspectable UIColor *textColor;
 
 @end
 

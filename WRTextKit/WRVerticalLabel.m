@@ -15,6 +15,7 @@
 
 @end
 
+IB_DESIGNABLE
 @implementation WRVerticalLabel
 
 - (instancetype)init {
@@ -22,6 +23,7 @@
         _font = [UIFont systemFontOfSize:15];
         _verticalAlignment = WRTextVerticalAlignmentLeading;
         _lineBreakMode = NSLineBreakByTruncatingTail;
+        _textColor = [UIColor blueColor];
     }
     return self;
 }
@@ -34,6 +36,9 @@
     if (self.font) {
         [self.innerText addAttribute:NSFontAttributeName value:self.font range:NSMakeRange(0, _text.length)];
     }
+    if (self.textColor) {
+        [self.innerText addAttribute:NSForegroundColorAttributeName value:_textColor range:NSMakeRange(0, _text.length)];
+    }
     self.textLayout.text = self.innerText;
     [self layoutIfNeeded];
 }
@@ -42,7 +47,14 @@
     if (_font == font || [_font isEqual:font]) return;
     _font = font;
     [self.innerText addAttribute:NSFontAttributeName value:_font range:NSMakeRange(0, _text.length)];
+    self.textLayout.text = self.innerText;
+    [self layoutIfNeeded];
+}
 
+- (void)setTextColor:(UIColor *)textColor {
+    if (_textColor == textColor || [_textColor isEqual:textColor]) return;
+    _textColor = textColor;
+    [self.innerText addAttribute:NSForegroundColorAttributeName value:_textColor range:NSMakeRange(0, _text.length)];
     self.textLayout.text = self.innerText;
     [self layoutIfNeeded];
 }
