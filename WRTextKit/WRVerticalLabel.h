@@ -18,6 +18,10 @@ NS_ASSUME_NONNULL_BEGIN
 @property (nullable, nonatomic, strong) UIFont *font;
 
 @property (nonatomic) WRTextVerticalAlignment verticalAlignment;
+@property (nonatomic) WRTextHorizontalAlignment horizontalAlignment;
+
+@property (nonatomic) NSLineBreakMode lineBreakMode;
+
 
 @end
 

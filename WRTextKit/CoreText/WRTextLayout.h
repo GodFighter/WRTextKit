@@ -34,11 +34,12 @@ typedef NS_ENUM(NSInteger,WRTextHorizontalAlignment) {
 @property (nonatomic, assign) CGSize containerSize;
 
 @property (nonatomic, assign, readonly) CGRect textBoundingRect;
-
 @property (nonatomic, assign, readonly) CGSize textBoundingSize;
 
 @property (nonatomic, assign) WRTextVerticalAlignment verticalAlignment;
 @property (nonatomic, assign) WRTextHorizontalAlignment horizontalAlignment;
+
+@property (nonatomic) NSLineBreakMode lineBreakMode;
 
 - (void)calculationcLayout;
 

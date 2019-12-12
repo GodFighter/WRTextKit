@@ -13,12 +13,12 @@
 @interface WRTextLayout()
 
 @property (nonatomic, strong) NSMutableArray *textLines;
+
 @property (nonatomic, readwrite) CTFramesetterRef ctFrameSetter;
 @property (nonatomic, readwrite) CTFrameRef ctFrame;
 
 @property (nonatomic, readwrite) CGSize bounds;
 
-@property (nonatomic, assign) NSUInteger lastLineNumber;
 
 @end
 
@@ -30,7 +30,7 @@
         self.vertical = YES;
         self.verticalAlignment = WRTextVerticalAlignmentLeading;
         self.horizontalAlignment = WRTextHorizontalAlignmentCenter;
-        self.lastLineNumber = INT_MAX;
+        self.lineBreakMode = NSLineBreakByTruncatingTail;
     }
     return self;
 }
@@ -75,7 +75,7 @@
 
     CTFrameGetLineOrigins(ctFrame, CFRangeMake(0, lineCount), lineOrigins);
 
-    for (NSUInteger i = 0; i < MIN(lineCount, self.lastLineNumber - 1);  i ++) {
+    for (NSUInteger i = 0; i < lineCount;  i ++) {
         CTLineRef ctLine = CFArrayGetValueAtIndex(ctLines, i);
         CFArrayRef ctRuns = CTLineGetGlyphRuns(ctLine);
         
@@ -92,7 +92,16 @@
         WRTextLine* foLine = [[WRTextLine alloc] initWithCTLine:ctLine position:position vertical:self.vertical];
         
         if (foLine.position.x + foLine.bounds.size.width > self.bounds.width) {
-            self.lastLineNumber = i;
+            NSInteger lastIndex = MAX(0, i - 1);
+            WRTextLine* lastLine = self.textLines[lastIndex];
+            
+            NSMutableAttributedString *string = [[NSMutableAttributedString alloc] initWithAttributedString:_text];
+
+            NSMutableParagraphStyle *paragraphStyle =  [[NSMutableParagraphStyle alloc] init];
+            paragraphStyle.lineBreakMode = self.lineBreakMode;
+            [string addAttribute:NSParagraphStyleAttributeName value:paragraphStyle range:lastLine.range];
+            self.text = string;
+            
             break;
         }
         
@@ -152,9 +161,6 @@
     
     NSArray *lines = self.textLines;
     
-//    CGFloat verticalOffset = self.vertical ? (size.width - self.textBoundingSize.width) / 2.0 : 0;
-//    CGFloat horizontalOffset = self.vertical ? (size.width - self.textBoundingSize.width) / 2.0 : 0;
-
     for (NSUInteger l = 0, lMax = lines.count; l < lMax; l++) {
         WRTextLine *line = lines[l];
         NSArray *lineRunRanges = line.verticalTextRange;

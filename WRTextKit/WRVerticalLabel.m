@@ -21,6 +21,7 @@
     if (self = [super init]) {
         _font = [UIFont systemFontOfSize:15];
         _verticalAlignment = WRTextVerticalAlignmentLeading;
+        _lineBreakMode = NSLineBreakByTruncatingTail;
     }
     return self;
 }
@@ -32,11 +33,6 @@
     self.innerText = [[NSMutableAttributedString alloc] initWithString:_text];
     if (self.font) {
         [self.innerText addAttribute:NSFontAttributeName value:self.font range:NSMakeRange(0, _text.length)];
-        
-//        NSMutableParagraphStyle *paragraphStyle =  [[NSMutableParagraphStyle alloc] init];
-//        paragraphStyle.lineBreakMode = NSLineBreakByTruncatingMiddle;
-//
-//        [self.innerText addAttribute:NSParagraphStyleAttributeName value:paragraphStyle range:NSMakeRange(0, _text.length)];
     }
     self.textLayout.text = self.innerText;
     [self layoutIfNeeded];
@@ -46,28 +42,32 @@
     if (_font == font || [_font isEqual:font]) return;
     _font = font;
     [self.innerText addAttribute:NSFontAttributeName value:_font range:NSMakeRange(0, _text.length)];
-    
-//    NSMutableParagraphStyle *paragraphStyle =  [[NSMutableParagraphStyle alloc] init];
-//    paragraphStyle.lineBreakMode = NSLineBreakByTruncatingTail;
-//
-//    [self.innerText addAttribute:NSParagraphStyleAttributeName value:paragraphStyle range:NSMakeRange(56, 67)];
 
     self.textLayout.text = self.innerText;
-//    self.frame = CGRectMake(100, 100, self.textLayout.textBoundingSize.width, self.textLayout.textBoundingSize.height);
-
     [self layoutIfNeeded];
 }
 
 - (void)setFrame:(CGRect)frame {
     [super setFrame:frame];
     
-//    self.textLayout.containerSize = frame.size;
     [self layoutIfNeeded];
 }
 
-- (void)setTextAlignment:(WRTextVerticalAlignment)textAlignment {
-    _verticalAlignment = textAlignment;
+- (void)setVerticalAlignment:(WRTextVerticalAlignment)verticalAlignment {
+    _verticalAlignment = verticalAlignment;
     self.textLayout.verticalAlignment = _verticalAlignment;
+    [self layoutIfNeeded];
+}
+
+- (void)setHorizontalAlignment:(WRTextHorizontalAlignment)horizontalAlignment {
+    _horizontalAlignment = horizontalAlignment;
+    self.textLayout.horizontalAlignment = _horizontalAlignment;
+    [self layoutIfNeeded];
+}
+
+- (void)setLineBreakMode:(NSLineBreakMode)lineBreakMode {
+    _lineBreakMode = lineBreakMode;
+    self.textLayout.lineBreakMode = lineBreakMode;
     [self layoutIfNeeded];
 }
 

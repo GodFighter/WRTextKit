@@ -22,7 +22,7 @@
     [self.view addSubview:label];
     label.backgroundColor = [UIColor redColor];
     
-    label.frame = CGRectMake(100, 100, 50, 400);
+    label.frame = CGRectMake(100, 100, 70, 400);
     
     
 //    label.translatesAutoresizingMaskIntoConstraints = NO;
@@ -37,6 +37,8 @@
     
     label.text = @"good  ᠪᠠᠭᠤᠯᠭᠠᠬᠤ ᠲᠤᠰᠭᠠᠢ good  ᠪᠠᠭᠤᠯᠭᠠᠬᠤ ᠲᠤᠰᠭᠠᠢ ᠪᠠᠭᠤᠯᠭᠠᠬᠤ ᠲᠤᠰᠭᠠᠢᠪᠠᠭᠤᠯᠭᠠᠬᠤ ᠲᠤᠰᠭᠠᠢ ᠪᠠᠭᠤᠯᠭᠠᠬᠤ ᠲᠤᠰᠭᠠᠢ ᠪᠠᠭᠤᠯᠭᠠᠬᠤ ᠲᠤᠰᠭᠠᠢ ᠪᠠᠭᠤᠯᠭᠠᠬᠤ ᠲᠤᠰᠭᠠᠢ ᠪᠠᠭᠤᠯᠭᠠᠬᠤ ᠲᠤᠰᠭᠠᠢ ᠪᠠᠭᠤᠯᠭᠠᠬᠤ ᠲᠤᠰᠭᠠᠢ ᠪᠠᠭᠤᠯᠭᠠᠬᠤ ᠲᠤᠰᠭᠠᠢ 好";
     label.font = [UIFont fontWithName:@"MongolQaganTig" size:20];
+    
+    label.lineBreakMode = NSLineBreakByTruncatingMiddle;
 }
 
 
