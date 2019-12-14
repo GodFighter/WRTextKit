@@ -8,6 +8,7 @@
 
 #import "ViewController.h"
 #import "WRVerticalLabel.h"
+#import "WRVerticalButton.h"
 
 @interface ViewController ()
 
@@ -18,6 +19,17 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
     
+    WRVerticalButton *button = [[WRVerticalButton alloc] initWithFrame:CGRectMake(100, 100, 50, 190)];
+    
+    [button setBackgroundColor:[UIColor redColor]];
+    [button setTitleColor:[UIColor greenColor] forState:UIControlStateNormal];
+    [button setTitleColor:[UIColor whiteColor] forState:UIControlStateHighlighted];
+    [button setTitle:@"水电费水电费" forState:UIControlStateNormal];
+    button.font = [UIFont fontWithName:@"MongolQaganTig" size:20];
+    [self.view addSubview:button];
+    button.backgroundView.layer.cornerRadius = 5;
+    
+    /*
     WRVerticalLabel *label = [[WRVerticalLabel alloc] init];
     [self.view addSubview:label];
     label.backgroundColor = [UIColor redColor];
@@ -40,7 +52,7 @@
     label.font = [UIFont fontWithName:@"MongolQaganTig" size:20];
     
     label.lineBreakMode = NSLineBreakByTruncatingMiddle;
-    
+    */
 }
 
 

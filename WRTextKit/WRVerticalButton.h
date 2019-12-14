@@ -10,8 +10,10 @@
 
 NS_ASSUME_NONNULL_BEGIN
 
-@interface WRVerticalButton : UIView
+@interface WRVerticalButton : UIButton
 
+@property (strong, nonatomic) UIFont *font;
+@property (weak, nonatomic, readonly) UIView *backgroundView;
 @end
 
 NS_ASSUME_NONNULL_END
