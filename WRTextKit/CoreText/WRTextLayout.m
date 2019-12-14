@@ -52,7 +52,7 @@
 
 #pragma mark - Calculation
 - (void)calculationcLayout {
-    if (self.text.length == 0 || CGSizeEqualToSize(self.containerSize, CGSizeZero)) return;
+    if (_text.length == 0 || CGSizeEqualToSize(self.containerSize, CGSizeZero)) return;
 
     CGRect cgPathBox = CGRectMake(0, 0, _containerSize.width, _containerSize.height);
     CGRect pathRect = CGRectApplyAffineTransform(cgPathBox, CGAffineTransformMakeScale(1, -1));

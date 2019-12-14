@@ -40,7 +40,7 @@ IB_DESIGNABLE
         [self.innerText addAttribute:NSForegroundColorAttributeName value:_textColor range:NSMakeRange(0, _text.length)];
     }
     self.textLayout.text = self.innerText;
-    [self layoutIfNeeded];
+    [self setNeedsDisplay];
 }
 
 - (void)setFont:(UIFont *)font {
@@ -48,7 +48,7 @@ IB_DESIGNABLE
     _font = font;
     [self.innerText addAttribute:NSFontAttributeName value:_font range:NSMakeRange(0, _text.length)];
     self.textLayout.text = self.innerText;
-    [self layoutIfNeeded];
+    [self setNeedsDisplay];
 }
 
 - (void)setTextColor:(UIColor *)textColor {
@@ -56,31 +56,31 @@ IB_DESIGNABLE
     _textColor = textColor;
     [self.innerText addAttribute:NSForegroundColorAttributeName value:_textColor range:NSMakeRange(0, _text.length)];
     self.textLayout.text = self.innerText;
-    [self layoutIfNeeded];
+    [self setNeedsDisplay];
 }
 
 - (void)setFrame:(CGRect)frame {
     [super setFrame:frame];
     
-    [self layoutIfNeeded];
+    [self setNeedsDisplay];
 }
 
 - (void)setVerticalAlignment:(WRTextVerticalAlignment)verticalAlignment {
     _verticalAlignment = verticalAlignment;
     self.textLayout.verticalAlignment = _verticalAlignment;
-    [self layoutIfNeeded];
+    [self setNeedsDisplay];
 }
 
 - (void)setHorizontalAlignment:(WRTextHorizontalAlignment)horizontalAlignment {
     _horizontalAlignment = horizontalAlignment;
     self.textLayout.horizontalAlignment = _horizontalAlignment;
-    [self layoutIfNeeded];
+    [self setNeedsDisplay];
 }
 
 - (void)setLineBreakMode:(NSLineBreakMode)lineBreakMode {
     _lineBreakMode = lineBreakMode;
     self.textLayout.lineBreakMode = lineBreakMode;
-    [self layoutIfNeeded];
+    [self setNeedsDisplay];
 }
 
 - (void)drawRect:(CGRect)rect {
