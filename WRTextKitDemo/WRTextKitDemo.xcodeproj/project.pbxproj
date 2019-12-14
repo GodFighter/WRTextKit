@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		561368D323A4CC7A00338167 /* WRVerticalButton.m in Sources */ = {isa = PBXBuildFile; fileRef = 561368D223A4CC7A00338167 /* WRVerticalButton.m */; };
 		BBC850A623A0C50600999198 /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = BBC850A523A0C50600999198 /* AppDelegate.m */; };
 		BBC850AC23A0C50600999198 /* ViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = BBC850AB23A0C50600999198 /* ViewController.m */; };
 		BBC850AF23A0C50600999198 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = BBC850AD23A0C50600999198 /* Main.storyboard */; };
@@ -20,6 +21,8 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		561368D123A4CC7A00338167 /* WRVerticalButton.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = WRVerticalButton.h; sourceTree = "<group>"; };
+		561368D223A4CC7A00338167 /* WRVerticalButton.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = WRVerticalButton.m; sourceTree = "<group>"; };
 		BBC850A123A0C50600999198 /* WRTextKitDemo.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = WRTextKitDemo.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		BBC850A423A0C50600999198 /* AppDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AppDelegate.h; sourceTree = "<group>"; };
 		BBC850A523A0C50600999198 /* AppDelegate.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = AppDelegate.m; sourceTree = "<group>"; };
@@ -89,6 +92,8 @@
 			children = (
 				BBC850BE23A0C6AE00999198 /* WRVerticalLabel.h */,
 				BBC850BF23A0C6AE00999198 /* WRVerticalLabel.m */,
+				561368D123A4CC7A00338167 /* WRVerticalButton.h */,
+				561368D223A4CC7A00338167 /* WRVerticalButton.m */,
 				BBC850C123A0C6BE00999198 /* CoreText */,
 			);
 			name = WRTextKit;
@@ -188,6 +193,7 @@
 				BBC850AC23A0C50600999198 /* ViewController.m in Sources */,
 				BBC850A623A0C50600999198 /* AppDelegate.m in Sources */,
 				BBC850B723A0C50A00999198 /* main.m in Sources */,
+				561368D323A4CC7A00338167 /* WRVerticalButton.m in Sources */,
 				BBC850C423A0C6DE00999198 /* WRTextLayout.m in Sources */,
 				BBC850C023A0C6AE00999198 /* WRVerticalLabel.m in Sources */,
 				BBC850C723A0C6F200999198 /* WRTextLine.m in Sources */,
