@@ -93,6 +93,9 @@
         
         if (foLine.position.x + foLine.bounds.size.width > self.bounds.width) {
             NSInteger lastIndex = MAX(0, i - 1);
+            if (lastIndex < 0) {
+                break;
+            }
             WRTextLine* lastLine = self.textLines[lastIndex];
             
             NSMutableAttributedString *string = [[NSMutableAttributedString alloc] initWithAttributedString:_text];

@@ -22,7 +22,7 @@
     [self.view addSubview:label];
     label.backgroundColor = [UIColor redColor];
     
-    label.frame = CGRectMake(100, 100, 70, 400);
+    label.frame = CGRectMake(100, 100, 10, 400);
     
     
 //    label.translatesAutoresizingMaskIntoConstraints = NO;
