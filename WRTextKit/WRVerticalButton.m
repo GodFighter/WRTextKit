@@ -72,6 +72,7 @@
     [super setHidden:hidden];
     
     self.mongolianLabel.hidden = hidden;
+    self.backgroundView.hidden = hidden;
 }
 
 - (void)setBackgroundColor:(UIColor *)backgroundColor {
