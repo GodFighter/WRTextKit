@@ -21,14 +21,17 @@
     
     WRVerticalButton *button = [[WRVerticalButton alloc] initWithFrame:CGRectMake(100, 100, 50, 190)];
     
-    [button setBackgroundColor:[UIColor redColor]];
     [button setTitleColor:[UIColor greenColor] forState:UIControlStateNormal];
     [button setTitleColor:[UIColor whiteColor] forState:UIControlStateHighlighted];
     [button setTitle:@"水电费水电费" forState:UIControlStateNormal];
+    [button setTitle:@"2323" forState:UIControlStateHighlighted];
     button.font = [UIFont fontWithName:@"MongolQaganTig" size:20];
+    [button.backgroundView layoutIfNeeded];
+    button.backgroundView.clipsToBounds = YES;
+    button.backgroundColor = [UIColor redColor];
     [self.view addSubview:button];
-    button.backgroundView.layer.cornerRadius = 5;
-    
+    button.backgroundView.layer.cornerRadius = 15;
+
     /*
     WRVerticalLabel *label = [[WRVerticalLabel alloc] init];
     [self.view addSubview:label];
