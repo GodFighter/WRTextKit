@@ -41,9 +41,14 @@
     _backgroundView.frame = self.frame;
 }
 
+- (void)setFont:(UIFont *)font {
+    _font = font;
+    self.mongolianLabel.font = _font;
+}
+
 - (void)setTitle:(NSString *)title forState:(UIControlState)state {
     [super setTitle:title forState:state];
-    
+    self.mongolianLabel.text = title;
 }
 
 - (void)setTitleColor:(UIColor *)color forState:(UIControlState)state {
