@@ -22,7 +22,7 @@
     WRVerticalButton *button = [[WRVerticalButton alloc] initWithFrame:CGRectMake(100, 100, 50, 190)];
     
     [button setTitleColor:[UIColor greenColor] forState:UIControlStateNormal];
-    [button setTitleColor:[UIColor whiteColor] forState:UIControlStateHighlighted];
+    [button setTitleColor:[UIColor whiteColor] forState:UIControlStateSelected];
     [button setTitle:@"水电费水电费" forState:UIControlStateNormal];
     [button setTitle:@"2323" forState:UIControlStateHighlighted];
     button.font = [UIFont fontWithName:@"MongolQaganTig" size:20];
@@ -31,6 +31,9 @@
     button.backgroundColor = [UIColor redColor];
     [self.view addSubview:button];
     button.backgroundView.layer.cornerRadius = 15;
+    
+    [button addTarget:self action:@selector(action_button:) forControlEvents:UIControlEventTouchUpInside];
+    
 
     /*
     WRVerticalLabel *label = [[WRVerticalLabel alloc] init];
@@ -56,6 +59,10 @@
     
     label.lineBreakMode = NSLineBreakByTruncatingMiddle;
     */
+}
+
+- (void)action_button:(WRVerticalButton *)button {
+    button.selected = !button.selected;
 }
 
 

@@ -87,7 +87,17 @@
 - (void)setHighlighted:(BOOL)highlighted {
     [super setHighlighted:highlighted];
     
+    if (self.isSelected) {
+        return;
+    }
+    
     self.mongolianLabel.textColor = highlighted ? [self titleColorForState:UIControlStateHighlighted] : [self titleColorForState:UIControlStateNormal];
+}
+
+- (void)setSelected:(BOOL)selected {
+    [super setSelected:selected];
+    
+    self.mongolianLabel.textColor = selected ? [self titleColorForState:UIControlStateSelected] : [self titleColorForState:UIControlStateNormal];
 }
 
 
