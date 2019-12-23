@@ -14,6 +14,8 @@ NS_ASSUME_NONNULL_BEGIN
 
 @property (strong, nonatomic) UIFont *font;
 @property (weak, nonatomic, readonly) UIView *backgroundView;
+@property (weak, nonatomic, readonly) UIView *wr_titleLabel;
+
 @end
 
 NS_ASSUME_NONNULL_END

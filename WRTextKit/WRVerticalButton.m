@@ -23,6 +23,10 @@
 //MARK: -
 @implementation WRVerticalButton
 
+- (UIView *)wr_titleLabel {
+    return self.mongolianLabel;
+}
+
 - (void)didMoveToSuperview {
     if (self.superview != nil) {
         self.superview.userInteractionEnabled = YES;
