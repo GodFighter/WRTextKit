@@ -41,6 +41,8 @@ typedef NS_ENUM(NSInteger,WRTextHorizontalAlignment) {
 
 @property (nonatomic) NSLineBreakMode lineBreakMode;
 
+@property (nonatomic) BOOL isCalculationc;
+
 - (void)calculationcLayout;
 
 - (void)drawInContext:(CGContextRef)context size:(CGSize)size;

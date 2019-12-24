@@ -31,6 +31,7 @@
         self.verticalAlignment = WRTextVerticalAlignmentLeading;
         self.horizontalAlignment = WRTextHorizontalAlignmentCenter;
         self.lineBreakMode = NSLineBreakByTruncatingTail;
+        self.isCalculationc = NO;
     }
     return self;
 }
@@ -91,7 +92,7 @@
         
         WRTextLine* foLine = [[WRTextLine alloc] initWithCTLine:ctLine position:position vertical:self.vertical];
         
-        if (foLine.position.x + foLine.bounds.size.width > self.bounds.width) {
+        if (self.isCalculationc == NO && (foLine.position.x + foLine.bounds.size.width > self.bounds.width)) {
             NSInteger lastIndex = MAX(0, i - 1);
             if (lastIndex < 0) {
                 break;
@@ -144,7 +145,7 @@
     
     _textBoundingRect = textBoundingRect;
     _textBoundingSize = textBoundingSize;
-    
+
     self.ctFrameSetter = ctSetter;
     self.ctFrame = ctFrame;
     

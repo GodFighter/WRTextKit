@@ -28,6 +28,20 @@ IB_DESIGNABLE
     return self;
 }
 
++ (CGFloat)heightWithText:(NSString *)text height:(CGFloat)height font:(UIFont *)font {
+    WRVerticalLabel *label = [WRVerticalLabel new];
+    label.textLayout.isCalculationc = YES;
+    label.frame = CGRectMake(0, 0, height, height);
+    label.font = font;
+    label.text = text;
+    
+    return label.textLayout.textBoundingSize.width;
+}
+
+- (CGSize)textSize {
+    return self.textLayout.textBoundingSize;
+}
+
 - (void)setText:(NSString *)text {
     if (_text == text || [_text isEqualToString:text]) return;
     _text = text.copy;
@@ -61,8 +75,13 @@ IB_DESIGNABLE
 
 - (void)setFrame:(CGRect)frame {
     [super setFrame:frame];
-    
+
+    self.textLayout.containerSize = frame.size;
     [self setNeedsDisplay];
+}
+
+- (void)layoutSubviews {
+    self.textLayout.containerSize = self.frame.size;
 }
 
 - (void)setVerticalAlignment:(WRTextVerticalAlignment)verticalAlignment {

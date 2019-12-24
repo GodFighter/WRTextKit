@@ -44,6 +44,8 @@
 	<key>UIAppFonts</key>
 	<array>
 		<string>MongolQaganTig.ttf</string>
+		<string>DelehiSoninQaganTig.ttf</string>
+		<string>DelehiQaganTig.ttf</string>
 	</array>
 </dict>
 </plist>

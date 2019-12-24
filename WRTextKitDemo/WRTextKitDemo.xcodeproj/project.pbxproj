@@ -18,6 +18,8 @@
 		BBC850C423A0C6DE00999198 /* WRTextLayout.m in Sources */ = {isa = PBXBuildFile; fileRef = BBC850C323A0C6DE00999198 /* WRTextLayout.m */; };
 		BBC850C723A0C6F200999198 /* WRTextLine.m in Sources */ = {isa = PBXBuildFile; fileRef = BBC850C623A0C6F200999198 /* WRTextLine.m */; };
 		BBC850CA23A0CCDD00999198 /* MongolQaganTig.ttf in Resources */ = {isa = PBXBuildFile; fileRef = BBC850C923A0CCDD00999198 /* MongolQaganTig.ttf */; };
+		BBEBAFED23B1C16300B2C99B /* DelehiSoninQaganTig.ttf in Resources */ = {isa = PBXBuildFile; fileRef = BBEBAFEC23B1C16300B2C99B /* DelehiSoninQaganTig.ttf */; };
+		BBEBAFEF23B1C63300B2C99B /* DelehiQaganTig.ttf in Resources */ = {isa = PBXBuildFile; fileRef = BBEBAFEE23B1C63300B2C99B /* DelehiQaganTig.ttf */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -40,6 +42,8 @@
 		BBC850C523A0C6F200999198 /* WRTextLine.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = WRTextLine.h; sourceTree = "<group>"; };
 		BBC850C623A0C6F200999198 /* WRTextLine.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = WRTextLine.m; sourceTree = "<group>"; };
 		BBC850C923A0CCDD00999198 /* MongolQaganTig.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = MongolQaganTig.ttf; sourceTree = "<group>"; };
+		BBEBAFEC23B1C16300B2C99B /* DelehiSoninQaganTig.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = DelehiSoninQaganTig.ttf; sourceTree = "<group>"; };
+		BBEBAFEE23B1C63300B2C99B /* DelehiQaganTig.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = DelehiQaganTig.ttf; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -114,6 +118,8 @@
 		BBC850C823A0CCC200999198 /* Resource */ = {
 			isa = PBXGroup;
 			children = (
+				BBEBAFEE23B1C63300B2C99B /* DelehiQaganTig.ttf */,
+				BBEBAFEC23B1C16300B2C99B /* DelehiSoninQaganTig.ttf */,
 				BBC850C923A0CCDD00999198 /* MongolQaganTig.ttf */,
 			);
 			path = Resource;
@@ -178,6 +184,8 @@
 			files = (
 				BBC850B423A0C50A00999198 /* LaunchScreen.storyboard in Resources */,
 				BBC850B123A0C50A00999198 /* Assets.xcassets in Resources */,
+				BBEBAFED23B1C16300B2C99B /* DelehiSoninQaganTig.ttf in Resources */,
+				BBEBAFEF23B1C63300B2C99B /* DelehiQaganTig.ttf in Resources */,
 				BBC850CA23A0CCDD00999198 /* MongolQaganTig.ttf in Resources */,
 				BBC850AF23A0C50600999198 /* Main.storyboard in Resources */,
 			);

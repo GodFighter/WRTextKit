@@ -24,6 +24,10 @@ NS_ASSUME_NONNULL_BEGIN
 @property (nullable, nonatomic, strong)IBInspectable UIFont *font;
 @property (nullable, nonatomic, strong)IBInspectable UIColor *textColor;
 
+@property (nonatomic, readonly) CGSize textSize;
+
++ (CGFloat)heightWithText:(NSString *)text height:(CGFloat)height font:(UIFont *)font;
+
 @end
 
 NS_ASSUME_NONNULL_END
