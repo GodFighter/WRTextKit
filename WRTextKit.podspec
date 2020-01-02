@@ -1,6 +1,6 @@
 Pod::Spec.new do |s|
     s.name         = 'WRTextKit'
-    s.version      = "1.1.4"
+    s.version      = "1.1.6"
     s.summary      = '竖向蒙文标签控件'
     s.description  = '竖向蒙文标签控件，支持上下左右对齐'
     s.homepage     = 'https://github.com/GodFighter/WRTextKit'
@@ -16,7 +16,7 @@ Pod::Spec.new do |s|
     s.source_files = 'WRTextKit/*.{h,m}'
     s.subspec 'CoreText' do |ss|
         ss.source_files = 'WRTextKit/CoreText/*.{h,m}'
-        ss.dependency 'WRTextKit/WRVerticalLabel.h'
+        ss.dependency 'WRTextKit'
     end
 
 
