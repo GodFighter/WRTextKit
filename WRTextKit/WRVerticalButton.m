@@ -156,7 +156,7 @@ IB_DESIGNABLE
         _titleLabel.translatesAutoresizingMaskIntoConstraints = NO;
         _titleLabel.verticalAlignment = WRTextVerticalAlignmentCenter;
         _titleLabel.horizontalAlignment = WRTextHorizontalAlignmentCenter;
-        _titleLabel.backgroundColor = [UIColor greenColor];
+        _titleLabel.backgroundColor = [UIColor clearColor];
         
         [self addConstraints:@[
             [NSLayoutConstraint constraintWithItem:_titleLabel attribute:NSLayoutAttributeLeading relatedBy:NSLayoutRelationEqual toItem:self attribute:NSLayoutAttributeLeading multiplier:1.0 constant:0],
