@@ -13,7 +13,8 @@ NS_ASSUME_NONNULL_BEGIN
 @interface WRVerticalButton : UIControl
 
 @property (strong, nonatomic) UIFont *font;
-@property(nonatomic) NSInteger numberOfLines;
+@property (nonatomic) NSInteger numberOfLines;
+@property (weak, nonatomic, readonly) WRVerticalLabel *titleLabel;
 
 - (void)setTitle:(nullable NSString *)title forState:(UIControlState)state;
 - (void)setAttributedTitle:(nullable NSAttributedString *)title forState:(UIControlState)state;

@@ -37,7 +37,7 @@
 //MARK: -
 @interface WRVerticalButton ()
 
-@property (weak, nonatomic) WRVerticalLabel *titleLabel;
+@property (weak, nonatomic, readwrite) WRVerticalLabel *titleLabel;
 @property (weak, nonatomic) UIImageView *imageView;
 @property (weak, nonatomic) UIImageView *backgroundImageView;
 
