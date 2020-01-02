@@ -19,11 +19,11 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
     
-//    WRVerticalButton *button = [[WRVerticalButton alloc] initWithFrame:CGRectMake(100, 100, 50, 190)];
+//    WRVerticalButton *button = [[WRVerticalButton alloc] initWithFrame:CGRectMake(100, 100, 80, 190)];
 //
 //    [button setTitleColor:[UIColor greenColor] forState:UIControlStateNormal];
 //    [button setTitleColor:[UIColor whiteColor] forState:UIControlStateSelected];
-//    [button setTitle:@"水电费水电费" forState:UIControlStateNormal];
+//    [button setTitle:@"水电费水电费dfgdfgdfgdg水电费水电费dfgdfgdfgdg" forState:UIControlStateNormal];
 //    [button setTitle:@"2323" forState:UIControlStateHighlighted];
 //    button.font = [UIFont fontWithName:@"MongolQaganTig" size:20];
 //    [button.backgroundView layoutIfNeeded];
@@ -33,11 +33,11 @@
 //    button.backgroundView.layer.cornerRadius = 15;
 //
 //    [button addTarget:self action:@selector(action_button:) forControlEvents:UIControlEventTouchUpInside];
-    
+//    
 
-    NSString *stirng= @"水电费水电费是分身乏术地方电饭锅电饭锅电饭锅好水电费水电费是分身乏术地方电饭锅电饭锅分身乏术地方电饭锅电饭锅电饭锅好水电费水电费是分身乏分身乏术地方电饭锅电饭锅电饭锅好水电费水电费是分身乏分身乏术地方电饭锅电饭锅电饭锅好水电费水电费是分身乏";
-    
-    CGFloat height = [WRVerticalLabel heightWithText:stirng height:400 font:[UIFont fontWithName:@"DelehiSoninQaganTig" size:19]];
+//    NSString *stirng= @"水电费水电费是分身乏术地方电饭锅电饭锅电饭锅好水电费水电费是分身乏术地方电饭锅电饭锅分身乏术地方电饭锅电饭锅电饭锅好水电费水电费是分身乏分身乏术地方电饭锅电饭锅电饭锅好水电费水电费是分身乏分身乏术地方电饭锅电饭锅电饭锅好水电费水电费是分身乏";
+//
+//    CGFloat height = [WRVerticalLabel heightWithText:stirng height:400 font:[UIFont fontWithName:@"DelehiSoninQaganTig" size:19]];
 
 //    WRVerticalLabel *label = [[WRVerticalLabel alloc] init];
 //    [self.view addSubview:label];

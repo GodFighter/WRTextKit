@@ -8,26 +8,16 @@
 
 #import <UIKit/UIKit.h>
 #import <Foundation/Foundation.h>
+#import "WRVerticalLabel.h"
 
 NS_ASSUME_NONNULL_BEGIN
-
-//MARK:-enum
-typedef NS_ENUM(NSInteger,WRTextVerticalAlignment) {
-    WRTextVerticalAlignmentLeading,
-    WRTextVerticalAlignmentCenter,
-    WRTextVerticalAlignmentTrailing
-};
-
-typedef NS_ENUM(NSInteger,WRTextHorizontalAlignment) {
-    WRTextHorizontalAlignmentLeading,
-    WRTextHorizontalAlignmentCenter,
-    WRTextHorizontalAlignmentTrailing
-};
 
 //MARK:-
 @interface WRTextLayout : NSObject
 
 @property (nonatomic, assign) BOOL vertical;
+
+@property (nonatomic, weak) WRVerticalLabel *label;
 
 @property (nonatomic, strong) NSMutableAttributedString *text;
 
@@ -36,16 +26,10 @@ typedef NS_ENUM(NSInteger,WRTextHorizontalAlignment) {
 @property (nonatomic, assign, readonly) CGRect textBoundingRect;
 @property (nonatomic, assign, readonly) CGSize textBoundingSize;
 
-@property (nonatomic, assign) WRTextVerticalAlignment verticalAlignment;
-@property (nonatomic, assign) WRTextHorizontalAlignment horizontalAlignment;
-
-@property (nonatomic) NSLineBreakMode lineBreakMode;
-
-@property (nonatomic) BOOL isCalculationc;
-
-- (void)calculationcLayout;
-
 - (void)drawInContext:(CGContextRef)context size:(CGSize)size;
+
++ (CGFloat)widthWithText:(NSString *)text height:(CGFloat)height font:(UIFont *)font;
++ (CGFloat)widthWithAttributedText:(NSAttributedString *)text height:(CGFloat)height font:(UIFont *)font;
 
 @end
 

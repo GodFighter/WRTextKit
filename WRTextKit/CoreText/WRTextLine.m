@@ -40,6 +40,7 @@
     if(self){
         _vertical = vertical;
         _position = position;
+        _lastDisplayLine = false;
         [self setCtLine:ctLine];
     }
     return self;

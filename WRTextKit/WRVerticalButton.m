@@ -2,134 +2,201 @@
 //  WRVerticalButton.m
 //  WRTextKitDemo
 //
-//  Created by xianghui-iMac on 2019/12/14.
+//  Created by 项辉 on 2019/12/31.
 //  Copyright © 2019 项辉. All rights reserved.
 //
 
-#import "WRVerticalButton.h"
 #import "WRVerticalLabel.h"
+#import "WRVerticalButton.h"
 
 //MARK: -
-@interface WRVerticalButton ()
+@interface WRButton : UIButton
 
-@property (weak, nonatomic) WRVerticalLabel *mongolianLabel;
-@property (weak, nonatomic, readwrite) UIView *backgroundView;
-
-@property (strong, nonatomic) UIColor *wr_backgroundColor;
-@property (copy, nonatomic) NSString *wr;
+@property (weak, nonatomic) WRVerticalButton *verticalButton;
 
 @end
 
-//MARK: -
-@implementation WRVerticalButton
-
-- (UIView *)wr_titleLabel {
-    return self.mongolianLabel;
-}
-
-- (void)didMoveToSuperview {
-    if (self.superview != nil) {
-        self.superview.userInteractionEnabled = YES;
-        if (self.backgroundView.superview == nil) {
-            [self.superview insertSubview:self.backgroundView belowSubview:self];
-        }
-        if (self.mongolianLabel.superview == nil) {
-            [self.superview insertSubview:self.mongolianLabel aboveSubview:self.backgroundView];
-        }
-        self.font = [UIFont systemFontOfSize:15];
-        
-        self.titleLabel.hidden = YES;
-    }
-}
-
-- (void)layoutSubviews {
-    
-    self.mongolianLabel.text = [self titleForState:UIControlStateNormal];
-    self.mongolianLabel.frame = CGRectMake(0, 0, self.frame.size.width, self.frame.size.height);
-    self.mongolianLabel.center = self.center;
-    self.backgroundView.frame = self.frame;
-}
-
-- (void)setFont:(UIFont *)font {
-    _font = font;
-    self.mongolianLabel.font = _font;
-}
-
-- (void)setTitle:(NSString *)title forState:(UIControlState)state {
-    [super setTitle:title forState:state];
-}
-
-- (void)setTitleColor:(UIColor *)color forState:(UIControlState)state {
-    [super setTitleColor:color forState:state];
-    if ([self titleColorForState:UIControlStateNormal] != [UIColor clearColor]) {
-        self.mongolianLabel.textColor = [self titleColorForState:UIControlStateNormal];
-    }
-}
-
-- (void)setEnabled:(BOOL)enabled {
-    [super setEnabled:enabled];
-    
-    self.mongolianLabel.textColor = enabled ? [self titleColorForState:UIControlStateNormal] : [self titleColorForState:UIControlStateDisabled];
-}
-
-- (void)setHidden:(BOOL)hidden {
-    [super setHidden:hidden];
-    
-    self.mongolianLabel.hidden = hidden;
-    self.backgroundView.hidden = hidden;
-}
-
-- (void)setBackgroundColor:(UIColor *)backgroundColor {
-    [super setBackgroundColor:[UIColor clearColor]];
-    self.wr_backgroundColor = backgroundColor;
-
-    if (backgroundColor != [UIColor clearColor]) {
-        self.backgroundView.backgroundColor = backgroundColor;
-    }
-}
+@implementation WRButton
 
 - (void)setHighlighted:(BOOL)highlighted {
     [super setHighlighted:highlighted];
-    
-    if (self.isSelected) {
-        return;
-    }
-    
-    self.mongolianLabel.textColor = highlighted ? [self titleColorForState:UIControlStateHighlighted] : [self titleColorForState:UIControlStateNormal];
+    self.verticalButton.highlighted = highlighted;
 }
 
 - (void)setSelected:(BOOL)selected {
     [super setSelected:selected];
+    self.verticalButton.selected = selected;
+}
+
+- (void)setEnabled:(BOOL)enabled {
+    [super setEnabled:enabled];
+    self.verticalButton.enabled = enabled;
+}
+@end
+
+//MARK: -
+@interface WRVerticalButton ()
+
+@property (weak, nonatomic) WRVerticalLabel *titleLabel;
+@property (weak, nonatomic) UIImageView *imageView;
+@property (weak, nonatomic) UIImageView *backgroundImageView;
+
+@property (weak, nonatomic) WRButton *coverButton;
+
+@end
+
+//MARK:-
+IB_DESIGNABLE
+@implementation WRVerticalButton
+
+
+//MARK:-  life
+- (instancetype)init {
+    if (self = [super init]) {
+        [self init_defaultValue];
+        [self init_UI];
+    }
+    return self;
+}
+
+- (void)awakeFromNib {
+    [super awakeFromNib];
+
+    [self init_defaultValue];
+    [self init_UI];
+}
+
+//MARK:-  private
+- (void)init_defaultValue {
+    self.font = [UIFont systemFontOfSize:15];
     
-    self.mongolianLabel.textColor = selected ? [self titleColorForState:UIControlStateSelected] : [self titleColorForState:UIControlStateNormal];
 }
 
+- (void)init_UI {
+    self.titleLabel.textColor = [self.coverButton titleColorForState:UIControlStateNormal];
+    self.titleLabel.highlightedTextColor = [self.coverButton titleColorForState:UIControlStateHighlighted];
+}
 
-#pragma mark - lazy
-- (WRVerticalLabel *)mongolianLabel {
-    if (_mongolianLabel == nil) {
-        WRVerticalLabel *label = [WRVerticalLabel new];
-        [self.superview insertSubview:label aboveSubview:self.backgroundView];
-        _mongolianLabel = label;
+- (void)addTarget:(id)target action:(SEL)action forControlEvents:(UIControlEvents)controlEvents {
+    [self.coverButton addTarget:target action:action forControlEvents:controlEvents];
+}
+
+- (void)setNumberOfLines:(NSInteger)numberOfLines {
+    self.titleLabel.numberOfLines = numberOfLines;
+}
+
+- (void)setFont:(UIFont *)font {
+    _font = font;
+    self.titleLabel.font = _font;
+}
+
+- (void)setHighlighted:(BOOL)highlighted {
+    self.titleLabel.highlighted = highlighted;
+}
+
+- (void)setSelected:(BOOL)selected {
+    self.titleLabel.textColor = selected ? [self.coverButton titleColorForState:UIControlStateSelected] : [self.coverButton titleColorForState:UIControlStateNormal];
+}
+
+- (void)setEnabled:(BOOL)enabled {
+    self.titleLabel.textColor = enabled ? [self.coverButton titleColorForState:UIControlStateDisabled] : [self.coverButton titleColorForState:UIControlStateNormal];
+}
+
+//MARK:-  public
+- (void)setTitle:(nullable NSString *)title forState:(UIControlState)state {
+    [self.coverButton setTitle:title forState:state];
+    self.titleLabel.text = title;
         
-        _mongolianLabel.font = _font;
-        _mongolianLabel.verticalAlignment = WRTextVerticalAlignmentCenter;
-        _mongolianLabel.backgroundColor = [UIColor clearColor];
-        _mongolianLabel.textColor = [self titleColorForState:UIControlStateNormal] == [UIColor clearColor] ? [UIColor blackColor] : [self titleColorForState:UIControlStateNormal];
-        _mongolianLabel.text = [self titleForState:UIControlStateNormal];
-    }
-    return _mongolianLabel;
+}
+- (void)setAttributedTitle:(nullable NSAttributedString *)title forState:(UIControlState)state {
+    [self.coverButton setAttributedTitle:title forState:state];
+    self.titleLabel.attributedText = title;
 }
 
-- (UIView *)backgroundView {
-    if (_backgroundView == nil) {
-        UIView *bgView = [UIView new];
-        [self.superview insertSubview:bgView belowSubview:self];
-        _backgroundView = bgView;
-        _backgroundView.backgroundColor = self.wr_backgroundColor;
-        _backgroundView.frame = self.frame;
+- (void)setTitleColor:(nullable UIColor *)color forState:(UIControlState)state {
+    [self.coverButton setTitleColor:color forState:state];
+    self.titleLabel.textColor = [self.coverButton titleColorForState:UIControlStateNormal];
+}
+
+- (void)setImage:(nullable UIImage *)image forState:(UIControlState)state {
+    
+}
+
+- (void)setBackgroundImage:(nullable UIImage *)image forState:(UIControlState)state {
+    
+}
+
+- (nullable NSString *)titleForState:(UIControlState)state {
+    return [self.coverButton titleForState:state];
+}
+
+- (nullable UIColor *)titleColorForState:(UIControlState)state {
+    return [self.coverButton titleColorForState:state];
+}
+
+- (nullable NSAttributedString *)attributedTitleForState:(UIControlState)state {
+    return [self.coverButton attributedTitleForState:state];
+}
+
+- (nullable UIImage *)imageForState:(UIControlState)state {
+    return [self.coverButton imageForState:state];
+}
+
+- (nullable UIImage *)backgroundImageForState:(UIControlState)state {
+    return [self.coverButton backgroundImageForState:state];
+}
+
+//MARK:-  lazy
+- (WRVerticalLabel *)titleLabel {
+    if (_titleLabel == nil) {
+        WRVerticalLabel *titleLabel = [WRVerticalLabel new];
+        [self insertSubview:titleLabel aboveSubview:self.backgroundImageView];
+        _titleLabel = titleLabel;
+        
+        _titleLabel.translatesAutoresizingMaskIntoConstraints = NO;
+        _titleLabel.verticalAlignment = WRTextVerticalAlignmentCenter;
+        _titleLabel.horizontalAlignment = WRTextHorizontalAlignmentCenter;
+        _titleLabel.backgroundColor = [UIColor greenColor];
+        
+        [self addConstraints:@[
+            [NSLayoutConstraint constraintWithItem:_titleLabel attribute:NSLayoutAttributeLeading relatedBy:NSLayoutRelationEqual toItem:self attribute:NSLayoutAttributeLeading multiplier:1.0 constant:0],
+            [NSLayoutConstraint constraintWithItem:_titleLabel attribute:NSLayoutAttributeTop relatedBy:NSLayoutRelationEqual toItem:self attribute:NSLayoutAttributeTop multiplier:1.0 constant:0],
+            [NSLayoutConstraint constraintWithItem:_titleLabel attribute:NSLayoutAttributeTrailing relatedBy:NSLayoutRelationEqual toItem:self attribute:NSLayoutAttributeTrailing multiplier:1.0 constant:0],
+            [NSLayoutConstraint constraintWithItem:_titleLabel attribute:NSLayoutAttributeBottom relatedBy:NSLayoutRelationEqual toItem:self attribute:NSLayoutAttributeBottom multiplier:1.0 constant:0]
+        ]];
+
     }
-    return _backgroundView;
+    return _titleLabel;
+}
+
+- (UIImageView *)backgroundImageView {
+    if (_backgroundImageView == nil) {
+        UIImageView *backgroundImageView = [UIImageView new];
+        [self insertSubview:backgroundImageView atIndex:0];
+        _backgroundImageView = backgroundImageView;
+    }
+    return _backgroundImageView;
+}
+
+- (WRButton *)coverButton {
+    if (_coverButton == nil) {
+        WRButton *coverButton = [WRButton buttonWithType:UIButtonTypeCustom];
+        [self insertSubview:coverButton aboveSubview:self.titleLabel];
+//        coverButton.alpha = 0;
+        _coverButton = coverButton;
+        _coverButton.translatesAutoresizingMaskIntoConstraints = NO;
+        _coverButton.titleLabel.alpha = 0.0;
+        _coverButton.verticalButton = self;
+
+        [self addConstraints:@[
+            [NSLayoutConstraint constraintWithItem:_coverButton attribute:NSLayoutAttributeLeading relatedBy:NSLayoutRelationEqual toItem:self attribute:NSLayoutAttributeLeading multiplier:1.0 constant:0],
+            [NSLayoutConstraint constraintWithItem:_coverButton attribute:NSLayoutAttributeTop relatedBy:NSLayoutRelationEqual toItem:self attribute:NSLayoutAttributeTop multiplier:1.0 constant:0],
+            [NSLayoutConstraint constraintWithItem:_coverButton attribute:NSLayoutAttributeTrailing relatedBy:NSLayoutRelationEqual toItem:self attribute:NSLayoutAttributeTrailing multiplier:1.0 constant:0],
+            [NSLayoutConstraint constraintWithItem:_coverButton attribute:NSLayoutAttributeBottom relatedBy:NSLayoutRelationEqual toItem:self attribute:NSLayoutAttributeBottom multiplier:1.0 constant:0]
+        ]];
+    }
+    return _coverButton;
 }
 
 @end
+

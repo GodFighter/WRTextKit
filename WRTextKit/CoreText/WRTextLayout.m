@@ -13,67 +13,121 @@
 @interface WRTextLayout()
 
 @property (nonatomic, strong) NSMutableArray *textLines;
+@property (nonatomic, strong) NSMutableArray *displayLines;
 
 @property (nonatomic, readwrite) CTFramesetterRef ctFrameSetter;
 @property (nonatomic, readwrite) CTFrameRef ctFrame;
 
-@property (nonatomic, readwrite) CGSize bounds;
-
+@property (nonatomic, strong) NSMutableAttributedString *displayText;
 
 @end
 
 @implementation WRTextLayout
 
++ (CGFloat)widthWithText:(NSString *)text height:(CGFloat)height font:(UIFont *)font {
+
+    UIFont *systemFont = [UIFont systemFontOfSize:15];
+    if (font != nil) {
+        systemFont = font;
+    }
+    
+    NSAttributedString *string = [[NSAttributedString alloc] initWithString:text attributes:@{NSFontAttributeName : systemFont}];
+    NSArray *lines = [WRTextLayout lineWithAttributedString:string size:CGSizeMake(CGFLOAT_MAX, height)];
+    
+    return [self calculationTextBoundingRect:lines].width;
+}
+
++ (CGFloat)widthWithAttributedText:(NSAttributedString *)text height:(CGFloat)height font:(UIFont *)font {
+    NSArray *lines = [WRTextLayout lineWithAttributedString:text size:CGSizeMake(CGFLOAT_MAX, height)];
+    
+    return [self calculationTextBoundingRect:lines].width;
+}
+
 - (instancetype)init {
     if (self = [super init]) {
         self.containerSize = CGSizeZero;
         self.vertical = YES;
-        self.verticalAlignment = WRTextVerticalAlignmentLeading;
-        self.horizontalAlignment = WRTextHorizontalAlignmentCenter;
-        self.lineBreakMode = NSLineBreakByTruncatingTail;
-        self.isCalculationc = NO;
+        self.displayLines = [NSMutableArray arrayWithCapacity:1];
     }
     return self;
 }
 
 - (void)setContainerSize:(CGSize)containerSize {
-    if (CGSizeEqualToSize(containerSize, _containerSize)) {
-        return;
-    }
-    self.bounds = containerSize;
-    _containerSize = CGSizeMake(MAX(containerSize.width, containerSize.height), MAX(containerSize.width, containerSize.height));
-    [self calculationcLayout];
+    _containerSize = containerSize;
+    [self reloadData];
 }
 
-- (void)setText:(NSAttributedString *)text {
-    if ([_text isEqualToAttributedString:text]) return;
-    _text = [[NSMutableAttributedString alloc] initWithAttributedString:text];
-    [self calculationcLayout];
+- (void)setText:(NSMutableAttributedString *)text {
+    _text = text;
+    [self reloadData];
+}
+
+- (void)reloadData {
+    if (_text == nil || _text.length == 0 || CGSizeEqualToSize(_containerSize, CGSizeZero)) {
+        return;
+    }
+    NSMutableAttributedString *displayText = [[NSMutableAttributedString alloc] initWithAttributedString:_text];
+    [displayText enumerateAttribute:NSParagraphStyleAttributeName inRange:NSMakeRange(0, _text.string.length) options:NSAttributedStringEnumerationReverse usingBlock:^(id  _Nullable value, NSRange range, BOOL * _Nonnull stop) {
+        if (value == nil) {
+            return;
+        }
+        [displayText removeAttribute:value range:range];
+    }];
+
+    self.displayText = [[NSMutableAttributedString alloc] initWithAttributedString:displayText];
+    
+    self.textLines = [WRTextLayout lineWithAttributedString:_text size:CGSizeMake(CGFLOAT_MAX, self.containerSize.height)];
+    
+    self.displayLines = [WRTextLayout lineWithAttributedString:self.displayText size:self.containerSize];
+    
+    if (self.displayLines.count > 0) {
+        if (self.displayLines.count < self.textLines.count && self.label.numberOfLines == 0) {
+            WRTextLine *lastLine = self.displayLines.lastObject;
+            NSMutableAttributedString *string = [[NSMutableAttributedString alloc] initWithAttributedString:[_text attributedSubstringFromRange:NSMakeRange(0, lastLine.range.location + lastLine.range.length + 1)]];
+
+            NSMutableParagraphStyle *paragraphStyle =  [[NSMutableParagraphStyle alloc] init];
+            paragraphStyle.lineBreakMode = self.label.lineBreakMode;
+            [string addAttribute:NSParagraphStyleAttributeName value:paragraphStyle range:lastLine.range];
+            
+            self.displayText = string;
+
+            self.displayLines = [WRTextLayout lineWithAttributedString:self.displayText size:self.containerSize];
+        } else if (self.textLines.count > self.label.numberOfLines && self.label.numberOfLines != 0) {
+            WRTextLine *lastLine = self.displayLines[MAX(0, self.label.numberOfLines - 1)];
+            NSMutableAttributedString *string = [[NSMutableAttributedString alloc] initWithAttributedString:[_text attributedSubstringFromRange:NSMakeRange(0, lastLine.range.location + lastLine.range.length + 1)]];
+
+            NSMutableParagraphStyle *paragraphStyle =  [[NSMutableParagraphStyle alloc] init];
+            paragraphStyle.lineBreakMode = self.label.lineBreakMode;
+            [string addAttribute:NSParagraphStyleAttributeName value:paragraphStyle range:lastLine.range];
+            
+            self.displayText = string;
+
+            self.displayLines = [WRTextLayout lineWithAttributedString:self.displayText size:self.containerSize];
+        }
+    }
+    _textBoundingSize = [WRTextLayout calculationTextBoundingRect:self.displayLines];
+
 }
 
 #pragma mark - Calculation
-- (void)calculationcLayout {
-    if (_text.length == 0 || CGSizeEqualToSize(self.containerSize, CGSizeZero)) return;
-
-    CGRect cgPathBox = CGRectMake(0, 0, _containerSize.width, _containerSize.height);
++ (NSMutableArray<WRTextLine *>*)lineWithAttributedString:(NSAttributedString *)string size:(CGSize)size {
+    if (string == nil || string.length == 0 || CGSizeEqualToSize(size, CGSizeZero)) {
+        return nil;
+    }
+    
+    CGRect cgPathBox = CGRectMake(0, 0, size.width, size.height);
     CGRect pathRect = CGRectApplyAffineTransform(cgPathBox, CGAffineTransformMakeScale(1, -1));
     CGPathRef cgPath = CGPathCreateWithRect(pathRect, NULL);
 
     NSDictionary* frameAttrs = nil;
-    if(self.vertical){
-        frameAttrs = @{(NSString *)kCTFrameProgressionAttributeName:@(kCTFrameProgressionLeftToRight)};
-    }
-    CTFramesetterRef ctSetter= CTFramesetterCreateWithAttributedString((CFTypeRef)self.text);
+    frameAttrs = @{(NSString *)kCTFrameProgressionAttributeName:@(kCTFrameProgressionLeftToRight)};
+    CTFramesetterRef ctSetter= CTFramesetterCreateWithAttributedString((CFTypeRef)string);
     CTFrameRef ctFrame = CTFramesetterCreateFrame(ctSetter, CFRangeMake(0, 0), cgPath, (CFTypeRef)frameAttrs);
-    self.textLines = [[NSMutableArray alloc] init];
     CFArrayRef ctLines = CTFrameGetLines(ctFrame);
     NSUInteger lineCount = CFArrayGetCount(ctLines);
 
-    CGSize textBoundingSize = CGSizeZero;
-    CGRect textBoundingRect = CGRectZero;
-
+    NSMutableArray *lines = [NSMutableArray arrayWithCapacity:lineCount];
     CGPoint lineOrigins[lineCount];
-
     CTFrameGetLineOrigins(ctFrame, CFRangeMake(0, lineCount), lineOrigins);
 
     for (NSUInteger i = 0; i < lineCount;  i ++) {
@@ -90,69 +144,50 @@
         position.y = cgPathBox.size.height + cgPathBox.origin.y - lineOrigin.y;
         
         
-        WRTextLine* foLine = [[WRTextLine alloc] initWithCTLine:ctLine position:position vertical:self.vertical];
+        WRTextLine* foLine = [[WRTextLine alloc] initWithCTLine:ctLine position:position vertical:YES];
+        [lines addObject:foLine];
         
-        if (self.isCalculationc == NO && (foLine.position.x + foLine.bounds.size.width > self.bounds.width)) {
-            NSInteger lastIndex = MAX(0, i - 1);
-            if (lastIndex < 0) {
-                break;
-            }
-            WRTextLine* lastLine = self.textLines[lastIndex];
-            
-            NSMutableAttributedString *string = [[NSMutableAttributedString alloc] initWithAttributedString:_text];
+    }
+    return lines;
+}
 
-            NSMutableParagraphStyle *paragraphStyle =  [[NSMutableParagraphStyle alloc] init];
-            paragraphStyle.lineBreakMode = self.lineBreakMode;
-            [string addAttribute:NSParagraphStyleAttributeName value:paragraphStyle range:lastLine.range];
-            self.text = string;
-            
-            break;
++ (CGSize)calculationTextBoundingRect:(NSArray <WRTextLine *>*)lines {
+    CGSize textBoundingSize = CGSizeZero;
+    CGRect textBoundingRect = CGRectZero;
+
+    for (NSInteger i = 0; i < lines.count; i++) {
+        WRTextLine *line = lines[i];
+        if (i == 0) {
+            textBoundingRect = line.bounds;
+        } else {
+            textBoundingRect = CGRectUnion(textBoundingRect, line.bounds);
         }
-        
-        [self.textLines addObject:foLine];
-        if (i == 0)
-            textBoundingRect = foLine.bounds;
-        else
-            textBoundingRect = CGRectUnion(textBoundingRect, foLine.bounds);
     }
     { // calculate bounding size
         CGRect rect = textBoundingRect;
         
         rect = CGRectStandardize(rect);
         CGSize size = rect.size;
-        if (self.vertical) {
-                        size.width += rect.origin.x;
-//            size.width += cgPathBox.size.width - (rect.origin.x + rect.size.width);
-        } else {
-            size.width += rect.origin.x;
-        }
+//        if (self.vertical) {
+//           size.width += rect.origin.x;
+//        } else {
+//            size.width += rect.origin.x;
+//        }
+        size.width += rect.origin.x;
+
         size.height += rect.origin.y;
         if (size.width < 0) size.width = 0;
         if (size.height < 0) size.height = 0;
-        size.width = ceil(size.width);
+        size.width = ceil(size.width + 1);
         size.height = ceil(size.height);
         textBoundingSize = size;
     }
-//    if(self.vertical){
-//        ////// vertical text /////
-//        NSCharacterSet *rotateCharset = FOTextVerticalRotateCharacterSet();
-//        NSCharacterSet *rotateMoveCharset = FOTextVerticalRotateAndMoveCharacterSet();
-//        
-//        for (WRTextLine* line in self.textLines) {
-//            [self handleVerticalLines:line rotateCharset:rotateCharset rotateMoveCharset:rotateMoveCharset];
-//        }
-//    }
-    
-    _textBoundingRect = textBoundingRect;
-    _textBoundingSize = textBoundingSize;
 
-    self.ctFrameSetter = ctSetter;
-    self.ctFrame = ctFrame;
+//    _textBoundingRect = textBoundingRect;
+//    _textBoundingSize = textBoundingSize;
     
-    CFRelease(cgPath);
-    CFRelease(ctSetter);
-    CFRelease(ctFrame);
-    
+    return textBoundingSize;
+
 }
 
 #pragma mark - draw
@@ -163,7 +198,7 @@
     CGContextTranslateCTM(context, 0, size.height);
     CGContextScaleCTM(context, 1, -1);
     
-    NSArray *lines = self.textLines;
+    NSArray *lines = self.displayLines;
     
     for (NSUInteger l = 0, lMax = lines.count; l < lMax; l++) {
         WRTextLine *line = lines[l];
@@ -196,7 +231,7 @@
             CTRunRef run = CFArrayGetValueAtIndex(runArray, j);
                    
             CGFloat horizontalOffset = self.vertical ? (size.width - self.textBoundingSize.width) / 2.0 : 0;
-            switch (self.horizontalAlignment) {
+            switch (self.label.horizontalAlignment) {
                 case WRTextHorizontalAlignmentLeading:
                     horizontalOffset = 0;
                     break;
@@ -212,7 +247,7 @@
 
             
             CGFloat verticalOffset = line.position.y;
-            switch (self.verticalAlignment) {
+            switch (self.label.verticalAlignment) {
                 case WRTextVerticalAlignmentCenter:
                     verticalOffset = line.position.y - (size.height - line.bounds.size.height) / 2.0;
                     break;

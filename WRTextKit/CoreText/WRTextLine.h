@@ -59,6 +59,8 @@ typedef NS_ENUM(NSUInteger, WRTextRunGlyphDrawMode) {
 
 @property (nonatomic, readonly) CGFloat lineWidth;
 
+@property (nonatomic, getter=isLastDisplayLine) BOOL lastDisplayLine;
+
 
 - (instancetype)initWithCTLine:(CTLineRef)ctLine position:(CGPoint)position vertical:(BOOL)vertical;
 

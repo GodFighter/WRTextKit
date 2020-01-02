@@ -2,19 +2,32 @@
 //  WRVerticalButton.h
 //  WRTextKitDemo
 //
-//  Created by xianghui-iMac on 2019/12/14.
-//  Copyright © 2019 项辉. All rights reserved.
+//  Created by xianghui-iMac on 2020/1/2.
+//  Copyright © 2020 项辉. All rights reserved.
 //
 
 #import <UIKit/UIKit.h>
 
 NS_ASSUME_NONNULL_BEGIN
 
-@interface WRVerticalButton : UIButton
+@interface WRVerticalButton : UIControl
 
 @property (strong, nonatomic) UIFont *font;
-@property (weak, nonatomic, readonly) UIView *backgroundView;
-@property (weak, nonatomic, readonly) UIView *wr_titleLabel;
+@property(nonatomic) NSInteger numberOfLines;
+
+- (void)setTitle:(nullable NSString *)title forState:(UIControlState)state;
+- (void)setAttributedTitle:(nullable NSAttributedString *)title forState:(UIControlState)state;
+
+- (void)setTitleColor:(nullable UIColor *)color forState:(UIControlState)state;
+- (void)setImage:(nullable UIImage *)image forState:(UIControlState)state;
+- (void)setBackgroundImage:(nullable UIImage *)image forState:(UIControlState)state;
+
+- (nullable NSString *)titleForState:(UIControlState)state;
+- (nullable NSAttributedString *)attributedTitleForState:(UIControlState)state;
+
+- (nullable UIColor *)titleColorForState:(UIControlState)state;
+- (nullable UIImage *)imageForState:(UIControlState)state;
+- (nullable UIImage *)backgroundImageForState:(UIControlState)state;
 
 @end
 
