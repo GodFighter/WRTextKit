@@ -8,7 +8,7 @@
 
 #import <UIKit/UIKit.h>
 #import <Foundation/Foundation.h>
-#import "WRVerticalLabel.h"
+@class WRVerticalLabel;
 
 NS_ASSUME_NONNULL_BEGIN
 
