@@ -28,8 +28,8 @@ typedef NS_ENUM(NSInteger,WRTextHorizontalAlignment) {
 @property (nullable, nonatomic,copy) NSString *text; // default is nil
 @property (nullable, nonatomic,copy) NSAttributedString *attributedText;  // default is nil
 
-@property (null_resettable, nonatomic,strong) UIFont *font; // default is nil
-@property (null_resettable, nonatomic,strong) UIColor *textColor; // default is black
+@property (nonatomic,strong) UIFont *font; // default is nil
+@property (nonatomic,strong) UIColor *textColor; // default is black
 
 @property (nullable, nonatomic,strong) UIColor *highlightedTextColor; // default is nil
 @property (nonatomic,getter=isHighlighted) BOOL highlighted;          // default is NO

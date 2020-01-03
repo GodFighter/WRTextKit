@@ -41,10 +41,16 @@
 
 }
 
+- (instancetype)initWithCoder:(NSCoder *)coder {
+    if (self = [super initWithCoder:coder]) {
+        [self init_defaultValue];
+    }
+    return self;
+}
+
 - (void)awakeFromNib {
+
     [super awakeFromNib];
-    
-    [self init_defaultValue];
 }
 
 - (void)setFrame:(CGRect)frame {

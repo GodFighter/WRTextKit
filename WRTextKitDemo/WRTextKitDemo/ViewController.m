@@ -12,12 +12,25 @@
 
 @interface ViewController ()
 
+@property (weak, nonatomic) IBOutlet WRVerticalLabel *label;
+
 @end
 
 @implementation ViewController
 
 - (void)viewDidLoad {
     [super viewDidLoad];
+    
+    self.label.textColor = [UIColor redColor];
+    self.label.font = [UIFont fontWithName:@"MongolQaganTig" size:24];
+    self.label.text = @"水电费水电费dfgdfgdfgdg水电费水电费dfgdfgdfgdg";
+//    WRVerticalLabel *label = [WRVerticalLabel new];
+//    label.font = [UIFont fontWithName:@"MongolQaganTig" size:20];
+//    [self.view addSubview:label];
+//    label.frame = CGRectMake(0, 100, 80, 100);
+//    label.text = @"水电费水电费dfgdfgdfgdg水电费水电费dfgdfgdfgdg";
+    
+    
     
 //    WRVerticalButton *button = [[WRVerticalButton alloc] initWithFrame:CGRectMake(100, 100, 80, 190)];
 //

@@ -18,6 +18,7 @@
 		BBC850B423A0C50A00999198 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = BBC850B223A0C50A00999198 /* LaunchScreen.storyboard */; };
 		BBC850B723A0C50A00999198 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = BBC850B623A0C50A00999198 /* main.m */; };
 		BBC850CA23A0CCDD00999198 /* MongolQaganTig.ttf in Resources */ = {isa = PBXBuildFile; fileRef = BBC850C923A0CCDD00999198 /* MongolQaganTig.ttf */; };
+		BBCB1F4D23BED9CB004970B4 /* ViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = BBCB1F4C23BED9CB004970B4 /* ViewController.xib */; };
 		BBEBAFED23B1C16300B2C99B /* DelehiSoninQaganTig.ttf in Resources */ = {isa = PBXBuildFile; fileRef = BBEBAFEC23B1C16300B2C99B /* DelehiSoninQaganTig.ttf */; };
 		BBEBAFEF23B1C63300B2C99B /* DelehiQaganTig.ttf in Resources */ = {isa = PBXBuildFile; fileRef = BBEBAFEE23B1C63300B2C99B /* DelehiQaganTig.ttf */; };
 /* End PBXBuildFile section */
@@ -42,6 +43,7 @@
 		BBC850B523A0C50A00999198 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		BBC850B623A0C50A00999198 /* main.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
 		BBC850C923A0CCDD00999198 /* MongolQaganTig.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = MongolQaganTig.ttf; sourceTree = "<group>"; };
+		BBCB1F4C23BED9CB004970B4 /* ViewController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = ViewController.xib; sourceTree = "<group>"; };
 		BBEBAFEC23B1C16300B2C99B /* DelehiSoninQaganTig.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = DelehiSoninQaganTig.ttf; sourceTree = "<group>"; };
 		BBEBAFEE23B1C63300B2C99B /* DelehiQaganTig.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = DelehiQaganTig.ttf; sourceTree = "<group>"; };
 /* End PBXFileReference section */
@@ -80,6 +82,7 @@
 				BBC850A523A0C50600999198 /* AppDelegate.m */,
 				BBC850AA23A0C50600999198 /* ViewController.h */,
 				BBC850AB23A0C50600999198 /* ViewController.m */,
+				BBCB1F4C23BED9CB004970B4 /* ViewController.xib */,
 				BBC850AD23A0C50600999198 /* Main.storyboard */,
 				BBC850B023A0C50A00999198 /* Assets.xcassets */,
 				BBC850B223A0C50A00999198 /* LaunchScreen.storyboard */,
@@ -174,6 +177,7 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				BBCB1F4D23BED9CB004970B4 /* ViewController.xib in Resources */,
 				BBC850B423A0C50A00999198 /* LaunchScreen.storyboard in Resources */,
 				BBC850B123A0C50A00999198 /* Assets.xcassets in Resources */,
 				BBEBAFED23B1C16300B2C99B /* DelehiSoninQaganTig.ttf in Resources */,
