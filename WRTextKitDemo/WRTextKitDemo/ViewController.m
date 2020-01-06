@@ -21,9 +21,9 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
     
-    self.label.textColor = [UIColor redColor];
-    self.label.font = [UIFont fontWithName:@"MongolQaganTig" size:24];
-    self.label.text = @"水电费水电费dfgdfgdfgdg水电费水电费dfgdfgdfgdg";
+//    self.label.textColor = [UIColor redColor];
+//    self.label.font = [UIFont fontWithName:@"MongolQaganTig" size:24];
+//    self.label.text = @"水电费水电费dfgdfgdfgdg水电费水电费dfgdfgdfgdg";
 //    WRVerticalLabel *label = [WRVerticalLabel new];
 //    label.font = [UIFont fontWithName:@"MongolQaganTig" size:20];
 //    [self.view addSubview:label];
@@ -32,20 +32,18 @@
     
     
     
-//    WRVerticalButton *button = [[WRVerticalButton alloc] initWithFrame:CGRectMake(100, 100, 80, 190)];
-//
-//    [button setTitleColor:[UIColor greenColor] forState:UIControlStateNormal];
-//    [button setTitleColor:[UIColor whiteColor] forState:UIControlStateSelected];
-//    [button setTitle:@"水电费水电费dfgdfgdfgdg水电费水电费dfgdfgdfgdg" forState:UIControlStateNormal];
-//    [button setTitle:@"2323" forState:UIControlStateHighlighted];
-//    button.font = [UIFont fontWithName:@"MongolQaganTig" size:20];
-//    [button.backgroundView layoutIfNeeded];
-//    button.backgroundView.clipsToBounds = YES;
-//    button.backgroundColor = [UIColor redColor];
-//    [self.view addSubview:button];
-//    button.backgroundView.layer.cornerRadius = 15;
-//
-//    [button addTarget:self action:@selector(action_button:) forControlEvents:UIControlEventTouchUpInside];
+    WRVerticalButton *button = [[WRVerticalButton alloc] initWithFrame:CGRectMake(100, 100, 80, 190)];
+
+    button.enabled = NO;
+    [button setTitleColor:[UIColor greenColor] forState:UIControlStateHighlighted];
+    [button setTitleColor:[UIColor whiteColor] forState:UIControlStateDisabled];
+    [button setTitle:@"水电费水电费dfgdfgdfgdg水电费水电费dfgdfgdfgdg" forState:UIControlStateNormal];
+    [button setTitle:@"2323" forState:UIControlStateDisabled];
+    button.font = [UIFont fontWithName:@"MongolQaganTig" size:20];
+    button.backgroundColor = [UIColor redColor];
+    [self.view addSubview:button];
+
+    [button addTarget:self action:@selector(action_button:) forControlEvents:UIControlEventTouchUpInside];
 //    
 
 //    NSString *stirng= @"水电费水电费是分身乏术地方电饭锅电饭锅电饭锅好水电费水电费是分身乏术地方电饭锅电饭锅分身乏术地方电饭锅电饭锅电饭锅好水电费水电费是分身乏分身乏术地方电饭锅电饭锅电饭锅好水电费水电费是分身乏分身乏术地方电饭锅电饭锅电饭锅好水电费水电费是分身乏";

@@ -20,17 +20,23 @@
 
 - (void)setHighlighted:(BOOL)highlighted {
     [super setHighlighted:highlighted];
-    self.verticalButton.highlighted = highlighted;
+    if (self.verticalButton.highlighted != highlighted) {
+        self.verticalButton.highlighted = highlighted;
+    }
 }
 
 - (void)setSelected:(BOOL)selected {
     [super setSelected:selected];
-    self.verticalButton.selected = selected;
+    if (self.verticalButton.selected != selected) {
+        self.verticalButton.selected = selected;
+    }
 }
 
 - (void)setEnabled:(BOOL)enabled {
     [super setEnabled:enabled];
-    self.verticalButton.enabled = enabled;
+    if (self.verticalButton.enabled != enabled) {
+        self.verticalButton.enabled = enabled;
+    }
 }
 @end
 
@@ -86,37 +92,50 @@ IB_DESIGNABLE
     self.titleLabel.numberOfLines = numberOfLines;
 }
 
+- (void)refreshTitleLabel {
+    self.titleLabel.text = self.coverButton.currentTitle;
+    self.titleLabel.textColor = self.coverButton.currentTitleColor;
+}
+
 - (void)setFont:(UIFont *)font {
     _font = font;
     self.titleLabel.font = _font;
 }
 
 - (void)setHighlighted:(BOOL)highlighted {
-    self.titleLabel.highlighted = highlighted;
+    if (self.coverButton.highlighted != highlighted) {
+        self.coverButton.highlighted = highlighted;
+    }
+    [self refreshTitleLabel];
 }
 
 - (void)setSelected:(BOOL)selected {
-    self.titleLabel.textColor = selected ? [self.coverButton titleColorForState:UIControlStateSelected] : [self.coverButton titleColorForState:UIControlStateNormal];
+    if (self.coverButton.selected != selected) {
+        self.coverButton.selected = selected;
+    }
+    [self refreshTitleLabel];
 }
 
 - (void)setEnabled:(BOOL)enabled {
-    self.titleLabel.textColor = enabled ? [self.coverButton titleColorForState:UIControlStateDisabled] : [self.coverButton titleColorForState:UIControlStateNormal];
+    if (self.coverButton.enabled != enabled) {
+        self.coverButton.enabled = enabled;
+    }
+    [self refreshTitleLabel];
 }
 
 //MARK:-  public
 - (void)setTitle:(nullable NSString *)title forState:(UIControlState)state {
     [self.coverButton setTitle:title forState:state];
-    self.titleLabel.text = title;
-        
+    [self refreshTitleLabel];
 }
 - (void)setAttributedTitle:(nullable NSAttributedString *)title forState:(UIControlState)state {
     [self.coverButton setAttributedTitle:title forState:state];
-    self.titleLabel.attributedText = title;
+    self.titleLabel.attributedText = self.coverButton.currentAttributedTitle;
 }
 
 - (void)setTitleColor:(nullable UIColor *)color forState:(UIControlState)state {
     [self.coverButton setTitleColor:color forState:state];
-    self.titleLabel.textColor = [self.coverButton titleColorForState:UIControlStateNormal];
+    [self refreshTitleLabel];
 }
 
 - (void)setImage:(nullable UIImage *)image forState:(UIControlState)state {
