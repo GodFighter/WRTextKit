@@ -86,7 +86,7 @@
 
 //MARK:-  get & set
 - (void)setText:(NSString *)text {
-    if (_text == text || [_text isEqualToString:text]) {
+    if (text == nil || _text == text || [_text isEqualToString:text]) {
         return;
     }
     _text = text.copy;

@@ -59,11 +59,12 @@ IB_DESIGNABLE
     return self;
 }
 
-- (void)awakeFromNib {
-    [super awakeFromNib];
-
-    [self init_defaultValue];
-    [self init_UI];
+- (instancetype)initWithCoder:(NSCoder *)coder {
+    if (self = [super initWithCoder:coder]) {
+        [self init_defaultValue];
+        [self init_UI];
+    }
+    return self;
 }
 
 //MARK:-  private
