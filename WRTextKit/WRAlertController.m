@@ -91,7 +91,7 @@ static CGFloat wr_alertController_height = 300;
     controller.alertTitle = title;
     controller.message = message;
     controller.preferredStyle = preferredStyle;
-    controller.font = [UIFont systemFontOfSize:20];
+    controller.font = [UIFont fontWithName:@"Arial-ItalicMT" size:20];
     
     controller.modalPresentationStyle = UIModalPresentationCustom;
     
