@@ -21,6 +21,8 @@ NS_ASSUME_NONNULL_BEGIN
 @interface WRAlertController : UIViewController
 
 @property (strong, nonatomic) UIFont *font;
+@property (assign, nonatomic) BOOL titlePinToVisibleBounds; // default YES
+@property (assign, nonatomic) CGFloat lineSpacing; // default 5.0
 
 + (instancetype)alertControllerWithTitle:(NSString *)title message:(nullable NSString *)message preferredStyle:(UIAlertControllerStyle)preferredStyle;
 

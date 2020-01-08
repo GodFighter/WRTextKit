@@ -102,43 +102,79 @@
 }
 
 - (void)initAlertController {
-//    UIAlertController *alertController = [UIAlertController alertControllerWithTitle:@"标题" message:@"消息" preferredStyle:UIAlertControllerStyleActionSheet];
-//
-//    WRAlertAction *action = [WRAlertAction actionWithTitle:@"动作" style:UIAlertActionStyleDefault handler:^(UIAlertAction * _Nonnull action) {
-//
-//    }];
-//    [alertController addAction:action];
-//
-//    [self presentViewController:alertController animated:YES completion:nil];
-    
-    WRAlertController *alertController = [WRAlertController alertControllerWithTitle:@"标题" message:nil preferredStyle:UIAlertControllerStyleActionSheet];
+    /*
+    UIAlertController *alertController = [UIAlertController alertControllerWithTitle:@"标题" message:@"消息" preferredStyle:UIAlertControllerStyleAlert];
 
-    WRAlertAction *action = [WRAlertAction actionWithTitle:@"动作" style:UIAlertActionStyleCancel handler:^(UIAlertAction * _Nonnull action) {
-        
-    }];
-    WRAlertAction *action2 = [WRAlertAction actionWithTitle:@"动作2" style:UIAlertActionStyleCancel handler:^(UIAlertAction * _Nonnull action) {
-        
-    }];
-    WRAlertAction *action3 = [WRAlertAction actionWithTitle:@"动作" style:UIAlertActionStyleCancel handler:^(UIAlertAction * _Nonnull action) {
-        
-    }];
-    WRAlertAction *action4 = [WRAlertAction actionWithTitle:@"动作" style:UIAlertActionStyleCancel handler:^(UIAlertAction * _Nonnull action) {
-        
-    }];
-    WRAlertAction *action5 = [WRAlertAction actionWithTitle:@"动作" style:UIAlertActionStyleCancel handler:^(UIAlertAction * _Nonnull action) {
+    WRAlertAction *action = [WRAlertAction actionWithTitle:@"动作" style:UIAlertActionStyleDefault handler:^(UIAlertAction * _Nonnull action) {
 
     }];
-    WRAlertAction *action6 = [WRAlertAction actionWithTitle:@"动作" style:UIAlertActionStyleCancel handler:^(UIAlertAction * _Nonnull action) {
+    WRAlertAction *action1 = [WRAlertAction actionWithTitle:@"cancel" style:UIAlertActionStyleDestructive handler:^(UIAlertAction * _Nonnull action) {
 
     }];
-    WRAlertAction *action7 = [WRAlertAction actionWithTitle:@"动作" style:UIAlertActionStyleCancel handler:^(UIAlertAction * _Nonnull action) {
+    UIAlertAction *action2 = [UIAlertAction actionWithTitle:@"cancel1" style:UIAlertActionStyleCancel handler:^(UIAlertAction * _Nonnull action) {
 
     }];
-    WRAlertAction *action8 = [WRAlertAction actionWithTitle:@"动作" style:UIAlertActionStyleCancel handler:^(UIAlertAction * _Nonnull action) {
+
+    WRAlertAction *action3 = [WRAlertAction actionWithTitle:@"cancel" style:UIAlertActionStyleDestructive handler:^(UIAlertAction * _Nonnull action) {
 
     }];
+    WRAlertAction *action4 = [WRAlertAction actionWithTitle:@"cancel" style:UIAlertActionStyleDestructive handler:^(UIAlertAction * _Nonnull action) {
+
+    }];
+    WRAlertAction *action5 = [WRAlertAction actionWithTitle:@"cancel" style:UIAlertActionStyleDestructive handler:^(UIAlertAction * _Nonnull action) {
+
+    }];
+    WRAlertAction *action6 = [WRAlertAction actionWithTitle:@"cancel" style:UIAlertActionStyleDestructive handler:^(UIAlertAction * _Nonnull action) {
+
+    }];
+    WRAlertAction *action7 = [WRAlertAction actionWithTitle:@"cancel" style:UIAlertActionStyleDestructive handler:^(UIAlertAction * _Nonnull action) {
+
+    }];
+    WRAlertAction *action8 = [WRAlertAction actionWithTitle:@"cancel" style:UIAlertActionStyleDestructive handler:^(UIAlertAction * _Nonnull action) {
+
+    }];
+    WRAlertAction *action9 = [WRAlertAction actionWithTitle:@"cancel" style:UIAlertActionStyleDestructive handler:^(UIAlertAction * _Nonnull action) {
+
+    }];
+    WRAlertAction *action10 = [WRAlertAction actionWithTitle:@"cancel" style:UIAlertActionStyleDestructive handler:^(UIAlertAction * _Nonnull action) {
+
+    }];
+
+    WRAlertAction *action11 = [WRAlertAction actionWithTitle:@"cancel" style:UIAlertActionStyleDestructive handler:^(UIAlertAction * _Nonnull action) {
+
+    }];
+    UIAlertAction *action12 = [UIAlertAction actionWithTitle:@"cancel1" style:UIAlertActionStyleDestructive handler:^(UIAlertAction * _Nonnull action) {
+
+    }];
+
+    WRAlertAction *action13 = [WRAlertAction actionWithTitle:@"cancel" style:UIAlertActionStyleDestructive handler:^(UIAlertAction * _Nonnull action) {
+
+    }];
+    WRAlertAction *action14 = [WRAlertAction actionWithTitle:@"cancel" style:UIAlertActionStyleDestructive handler:^(UIAlertAction * _Nonnull action) {
+
+    }];
+    WRAlertAction *action15 = [WRAlertAction actionWithTitle:@"cancel" style:UIAlertActionStyleDestructive handler:^(UIAlertAction * _Nonnull action) {
+
+    }];
+    WRAlertAction *action16 = [WRAlertAction actionWithTitle:@"cancel" style:UIAlertActionStyleDestructive handler:^(UIAlertAction * _Nonnull action) {
+
+    }];
+    WRAlertAction *action17 = [WRAlertAction actionWithTitle:@"cancel" style:UIAlertActionStyleDestructive handler:^(UIAlertAction * _Nonnull action) {
+
+    }];
+    WRAlertAction *action18 = [WRAlertAction actionWithTitle:@"cancel" style:UIAlertActionStyleDestructive handler:^(UIAlertAction * _Nonnull action) {
+
+    }];
+    WRAlertAction *action19 = [WRAlertAction actionWithTitle:@"cancel" style:UIAlertActionStyleDestructive handler:^(UIAlertAction * _Nonnull action) {
+
+    }];
+    WRAlertAction *action20 = [WRAlertAction actionWithTitle:@"cancel" style:UIAlertActionStyleDestructive handler:^(UIAlertAction * _Nonnull action) {
+
+    }];
+
 
     [alertController addAction:action];
+    [alertController addAction:action1];
     [alertController addAction:action2];
     [alertController addAction:action3];
     [alertController addAction:action4];
@@ -146,6 +182,59 @@
     [alertController addAction:action6];
     [alertController addAction:action7];
     [alertController addAction:action8];
+    [alertController addAction:action9];
+    [alertController addAction:action10];
+    [alertController addAction:action11];
+    [alertController addAction:action12];
+    [alertController addAction:action13];
+    [alertController addAction:action14];
+    [alertController addAction:action15];
+    [alertController addAction:action16];
+    [alertController addAction:action17];
+    [alertController addAction:action18];
+    [alertController addAction:action19];
+    [alertController addAction:action20];
+
+    [self presentViewController:alertController animated:YES completion:nil];
+    */
+    
+    WRAlertController *alertController = [WRAlertController alertControllerWithTitle:@"ᠪᠠᠭᠤᠯᠭᠠᠬᠤ ᠪᠠᠭᠤᠯᠭᠠᠬᠤᠪᠠᠭᠤᠯᠭᠠᠬᠤ ᠪᠠᠭᠤᠯᠭᠠᠬᠤᠪᠠᠭᠤᠯᠭᠠᠬᠤ ᠪᠠᠭᠤᠯᠭᠠᠬᠤᠪᠠᠭᠤᠯᠭᠠᠬᠤ ᠪᠠᠭᠤᠯᠭᠠᠬᠤᠪᠠᠭᠤᠯᠭᠠᠬᠤ ᠪᠠᠭᠤᠯᠭᠠᠬᠤᠪᠠᠭᠤᠯᠭᠠᠬᠤ ᠪᠠᠭᠤᠯᠭᠠᠬᠤ ᠪᠠᠭᠤᠯᠭᠠᠬᠤ ᠪᠠᠭᠤᠯᠭᠠᠬᠤᠪᠠᠭᠤᠯᠭᠠᠬᠤ ᠪᠠᠭᠤᠯᠭᠠᠬᠤᠪᠠᠭᠤᠯᠭᠠᠬᠤ ᠪᠠᠭᠤᠯᠭᠠᠬᠤᠪᠠᠭᠤᠯᠭᠠᠬᠤ ᠪᠠᠭᠤᠯᠭᠠᠬᠤᠪᠠᠭᠤᠯᠭᠠᠬᠤ ᠪᠠᠭᠤᠯᠭᠠᠬᠤᠪᠠᠭᠤᠯᠭᠠᠬᠤ ᠪᠠᠭᠤᠯᠭᠠᠬᠤ ᠪᠠᠭᠤᠯᠭᠠᠬᠤ ᠪᠠᠭᠤᠯᠭᠠᠬᠤᠪᠠᠭᠤᠯᠭᠠᠬᠤ ᠪᠠᠭᠤᠯᠭᠠᠬᠤᠪᠠᠭᠤᠯᠭᠠᠬᠤ ᠪᠠᠭᠤᠯᠭᠠᠬᠤᠪᠠᠭᠤᠯᠭᠠᠬᠤ ᠪᠠᠭᠤᠯᠭᠠᠬᠤᠪᠠᠭᠤᠯᠭᠠᠬᠤ ᠪᠠᠭᠤᠯᠭᠠᠬᠤᠪᠠᠭᠤᠯᠭᠠᠬᠤ ᠪᠠᠭᠤᠯᠭᠠᠬᠤ ᠪᠠᠭᠤᠯᠭᠠᠬᠤ ᠪᠠᠭᠤᠯᠭᠠᠬᠤᠪᠠᠭᠤᠯᠭᠠᠬᠤ ᠪᠠᠭᠤᠯᠭᠠᠬᠤᠪᠠᠭᠤᠯᠭᠠᠬᠤ ᠪᠠᠭᠤᠯᠭᠠᠬᠤᠪᠠᠭᠤᠯᠭᠠᠬᠤ ᠪᠠᠭᠤᠯᠭᠠᠬᠤᠪᠠᠭᠤᠯᠭᠠᠬᠤ ᠪᠠᠭᠤᠯᠭᠠᠬᠤᠪᠠᠭᠤᠯᠭᠠᠬᠤ ᠪᠠᠭᠤᠯᠭᠠᠬᠤ ᠲᠠᠨᠢᠯᠴᠠᠭᠤᠯᠭ᠎ᠠ" message:nil preferredStyle:UIAlertControllerStyleAlert];
+    alertController.font = [UIFont fontWithName:@"DelehiSoninQaganTig" size:20];
+    alertController.titlePinToVisibleBounds = NO;
+
+    WRAlertAction *action = [WRAlertAction actionWithTitle:@"ᠪᠠᠭᠤᠯᠭᠠᠬᠤ" style:UIAlertActionStyleCancel handler:^(UIAlertAction * _Nonnull action) {
+        
+    }];
+    WRAlertAction *action2 = [WRAlertAction actionWithTitle:@"ᠪᠠᠭᠤᠯᠭᠠᠬᠤ" style:UIAlertActionStyleCancel handler:^(UIAlertAction * _Nonnull action) {
+        
+    }];
+    WRAlertAction *action3 = [WRAlertAction actionWithTitle:@"ᠪᠠᠭᠤᠯᠭᠠᠬᠤ ᠪᠠᠭᠤᠯᠭᠠᠬᠤ" style:UIAlertActionStyleCancel handler:^(UIAlertAction * _Nonnull action) {
+        
+    }];
+//    WRAlertAction *action4 = [WRAlertAction actionWithTitle:@"动作" style:UIAlertActionStyleCancel handler:^(UIAlertAction * _Nonnull action) {
+//
+//    }];
+//    WRAlertAction *action5 = [WRAlertAction actionWithTitle:@"动作" style:UIAlertActionStyleCancel handler:^(UIAlertAction * _Nonnull action) {
+//
+//    }];
+//    WRAlertAction *action6 = [WRAlertAction actionWithTitle:@"动作" style:UIAlertActionStyleCancel handler:^(UIAlertAction * _Nonnull action) {
+//
+//    }];
+//    WRAlertAction *action7 = [WRAlertAction actionWithTitle:@"动作" style:UIAlertActionStyleCancel handler:^(UIAlertAction * _Nonnull action) {
+//
+//    }];
+//    WRAlertAction *action8 = [WRAlertAction actionWithTitle:@"动作" style:UIAlertActionStyleCancel handler:^(UIAlertAction * _Nonnull action) {
+//
+//    }];
+
+    [alertController addAction:action];
+    [alertController addAction:action2];
+    [alertController addAction:action3];
+//    [alertController addAction:action4];
+//    [alertController addAction:action5];
+//    [alertController addAction:action6];
+//    [alertController addAction:action7];
+//    [alertController addAction:action8];
 
     CATransition *transition = [CATransition animation];
     transition.duration = 0.1;
@@ -155,6 +244,7 @@
     [self.view.window.layer addAnimation:transition forKey:nil];
 
     [self presentViewController:alertController animated:NO completion:nil];
+     
 }
 
 @end

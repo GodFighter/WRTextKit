@@ -66,7 +66,7 @@ static CGFloat wr_alertController_height = 300;
 
     self.view.backgroundColor = [[UIColor blackColor] colorWithAlphaComponent:0.4];
     
-    if (self.actions.lastObject.style == UIAlertActionStyleCancel) {
+    if (self.preferredStyle == UIAlertControllerStyleActionSheet && self.actions.lastObject.style == UIAlertActionStyleCancel) {
         self.footerAction = self.actions.lastObject;
         [self.actions removeLastObject];
     }
@@ -78,10 +78,20 @@ static CGFloat wr_alertController_height = 300;
 - (void)viewWillAppear:(BOOL)animated {
     [super viewWillAppear:animated];
     
-    [UIView animateWithDuration:0.2 delay:0 options:UIViewAnimationOptionCurveEaseIn animations:^{
-        self.collectionView_leading.constant = -self.collectionView.bounds.size.width;
-        [self.view layoutIfNeeded];
-    } completion:nil];
+    if (self.preferredStyle == UIAlertControllerStyleActionSheet) {
+        [UIView animateWithDuration:0.2 delay:0 options:UIViewAnimationOptionCurveEaseIn animations:^{
+            self.collectionView_leading.constant = -self.collectionView.bounds.size.width;
+            [self.view layoutIfNeeded];
+        } completion:nil];
+    } else {
+        self.collectionView.transform = CGAffineTransformScale(CGAffineTransformIdentity, 1.1, 1.1);
+        self.collectionView.alpha = 0;
+
+        [UIView animateWithDuration:0.2 delay:0 options:UIViewAnimationOptionCurveEaseIn animations:^{
+            self.collectionView.transform = CGAffineTransformIdentity;
+            self.collectionView.alpha = 1.0;
+        } completion:nil];
+    }
 }
 
 //MARK:-  public
@@ -92,6 +102,8 @@ static CGFloat wr_alertController_height = 300;
     controller.message = message;
     controller.preferredStyle = preferredStyle;
     controller.font = [UIFont fontWithName:@"Arial-ItalicMT" size:20];
+    controller.titlePinToVisibleBounds = YES;
+    controller.lineSpacing = 5.0;
     
     controller.modalPresentationStyle = UIModalPresentationCustom;
     
@@ -118,6 +130,7 @@ static CGFloat wr_alertController_height = 300;
     layout.footerReferenceSize = [self footerSize] > 0 ? CGSizeMake(ceil([self footerSize]), wr_alertController_height) : CGSizeZero;
     layout.minimumLineSpacing = 0;
     layout.minimumInteritemSpacing = 0;
+    layout.sectionHeadersPinToVisibleBounds = self.titlePinToVisibleBounds;
     
     UICollectionView *collectionView = [[UICollectionView alloc] initWithFrame:CGRectZero collectionViewLayout:layout];
     [self.view addSubview:collectionView];
@@ -133,12 +146,20 @@ static CGFloat wr_alertController_height = 300;
     [self.collectionView registerClass:UICollectionReusableView.class forSupplementaryViewOfKind:UICollectionElementKindSectionHeader withReuseIdentifier:@"header"];
     [self.collectionView registerClass:UICollectionReusableView.class forSupplementaryViewOfKind:UICollectionElementKindSectionFooter withReuseIdentifier:@"footer"];
     
-    self.collectionView_leading = [NSLayoutConstraint constraintWithItem:self.collectionView attribute:NSLayoutAttributeLeading relatedBy:NSLayoutRelationEqual toItem:self.view attribute:NSLayoutAttributeTrailing multiplier:1.0 constant:10];
-    
-    [self.view addConstraints:@[
-        [NSLayoutConstraint constraintWithItem:self.collectionView attribute:NSLayoutAttributeCenterY relatedBy:NSLayoutRelationEqual toItem:self.view attribute:NSLayoutAttributeCenterY multiplier:1.0 constant:0],
-        self.collectionView_leading
-    ]];
+    if (self.preferredStyle == UIAlertControllerStyleActionSheet) {
+        self.collectionView_leading = [NSLayoutConstraint constraintWithItem:self.collectionView attribute:NSLayoutAttributeLeading relatedBy:NSLayoutRelationEqual toItem:self.view attribute:NSLayoutAttributeTrailing multiplier:1.0 constant:10];
+        
+        [self.view addConstraints:@[
+            [NSLayoutConstraint constraintWithItem:self.collectionView attribute:NSLayoutAttributeCenterY relatedBy:NSLayoutRelationEqual toItem:self.view attribute:NSLayoutAttributeCenterY multiplier:1.0 constant:0],
+            self.collectionView_leading
+        ]];
+        
+    } else {
+        [self.view addConstraints:@[
+            [NSLayoutConstraint constraintWithItem:self.collectionView attribute:NSLayoutAttributeCenterY relatedBy:NSLayoutRelationEqual toItem:self.view attribute:NSLayoutAttributeCenterY multiplier:1.0 constant:0],
+            [NSLayoutConstraint constraintWithItem:self.collectionView attribute:NSLayoutAttributeCenterX relatedBy:NSLayoutRelationEqual toItem:self.view attribute:NSLayoutAttributeCenterX multiplier:1.0 constant:0]
+        ]];
+    }
     
     CGFloat width = [self headerSize] + [self footerSize] + self.actions.count * wr_alertController_item_size;
     
@@ -146,20 +167,27 @@ static CGFloat wr_alertController_height = 300;
         [NSLayoutConstraint constraintWithItem:self.collectionView attribute:NSLayoutAttributeHeight relatedBy:NSLayoutRelationEqual toItem:nil attribute:NSLayoutAttributeNotAnAttribute multiplier:1.0 constant:wr_alertController_height],
         [NSLayoutConstraint constraintWithItem:self.collectionView attribute:NSLayoutAttributeWidth relatedBy:NSLayoutRelationEqual toItem:nil attribute:NSLayoutAttributeNotAnAttribute multiplier:1.0 constant:MIN(width, UIScreen.mainScreen.bounds.size.width)]
     ]];
+
     [self.view layoutIfNeeded];
     [self.collectionView layoutIfNeeded];
 }
 
 - (CGFloat)titleWidth {
     if (self.alertTitle != nil && self.alertTitle.length > 0) {
-        return ceil([self.alertTitle boundingRectWithSize:CGSizeMake(wr_alertController_height - wr_alertController_margin * 2, CGFLOAT_MAX) options:NSStringDrawingUsesLineFragmentOrigin | NSStringDrawingUsesFontLeading attributes:@{NSFontAttributeName : self.titleFont} context:nil].size.height) + 30;
+        NSMutableParagraphStyle *paragraphStyle = [NSMutableParagraphStyle new];
+        paragraphStyle.lineSpacing = self.lineSpacing;
+
+        return ceil([self.alertTitle boundingRectWithSize:CGSizeMake(wr_alertController_height - wr_alertController_margin * 2, CGFLOAT_MAX) options:NSStringDrawingUsesLineFragmentOrigin | NSStringDrawingUsesFontLeading attributes:@{NSFontAttributeName : self.titleFont, NSParagraphStyleAttributeName : paragraphStyle} context:nil].size.height) + 30;
     }
     return 0;
 }
 
 - (CGFloat)messageWidth {
     if (self.message != nil && self.message.length > 0) {
-        return ceil([self.message boundingRectWithSize:CGSizeMake(wr_alertController_height - wr_alertController_margin * 2, CGFLOAT_MAX) options:NSStringDrawingUsesLineFragmentOrigin | NSStringDrawingUsesFontLeading attributes:@{NSFontAttributeName : self.messageFont} context:nil].size.height) + 30;
+        NSMutableParagraphStyle *paragraphStyle = [NSMutableParagraphStyle new];
+        paragraphStyle.lineSpacing = self.lineSpacing;
+        
+        return ceil([self.message boundingRectWithSize:CGSizeMake(wr_alertController_height - wr_alertController_margin * 2, CGFLOAT_MAX) options:NSStringDrawingUsesLineFragmentOrigin | NSStringDrawingUsesFontLeading attributes:@{NSFontAttributeName : self.messageFont, NSParagraphStyleAttributeName : paragraphStyle} context:nil].size.height) + 30;
     }
     return 0;
 }
@@ -280,22 +308,29 @@ static CGFloat wr_alertController_height = 300;
             titleLabel.verticalAlignment = WRTextVerticalAlignmentCenter;
             titleLabel.horizontalAlignment = WRTextHorizontalAlignmentCenter;
         }
-        titleLabel.text = self.alertTitle;
+
+        NSMutableParagraphStyle *paragraphStyle = [NSMutableParagraphStyle new];
+        paragraphStyle.lineSpacing = self.lineSpacing;
         
-        WRVerticalLabel *messageLabel = [view viewWithTag:2048];
-        if (messageLabel == nil) {
-            messageLabel = [[WRVerticalLabel alloc] initWithFrame:CGRectMake(titleLabel.frame.size.width, 0, [self messageWidth], view.bounds.size.height)];
-            [view addSubview:messageLabel];
-            messageLabel.tag = 2048;
-            messageLabel.font = self.messageFont;
-            messageLabel.autoresizingMask = UIViewAutoresizingFlexibleHeight;
-            messageLabel.textColor = [UIColor colorWithWhite:0.7 alpha:1];
-            messageLabel.highlightedTextColor = [messageLabel.textColor colorWithAlphaComponent:0.5];
-            messageLabel.backgroundColor = [UIColor clearColor];
-            messageLabel.verticalAlignment = WRTextVerticalAlignmentCenter;
-            messageLabel.horizontalAlignment = WRTextHorizontalAlignmentCenter;
+        titleLabel.attributedText = [[NSAttributedString alloc] initWithString:self.alertTitle attributes:@{NSFontAttributeName : self.messageFont, NSParagraphStyleAttributeName : paragraphStyle}];
+        
+        if (self.message.length > 0) {
+            WRVerticalLabel *messageLabel = [view viewWithTag:2048];
+            if (messageLabel == nil) {
+                messageLabel = [[WRVerticalLabel alloc] initWithFrame:CGRectMake(titleLabel.frame.size.width, 0, [self messageWidth], view.bounds.size.height)];
+                [view addSubview:messageLabel];
+                messageLabel.tag = 2048;
+                messageLabel.font = self.messageFont;
+                messageLabel.autoresizingMask = UIViewAutoresizingFlexibleHeight;
+                messageLabel.textColor = [UIColor colorWithWhite:0.7 alpha:1];
+                messageLabel.highlightedTextColor = [messageLabel.textColor colorWithAlphaComponent:0.5];
+                messageLabel.backgroundColor = [UIColor clearColor];
+                messageLabel.verticalAlignment = WRTextVerticalAlignmentCenter;
+                messageLabel.horizontalAlignment = WRTextHorizontalAlignmentCenter;
+            }
+
+            messageLabel.attributedText = [[NSAttributedString alloc] initWithString:self.message attributes:@{NSFontAttributeName : self.messageFont, NSParagraphStyleAttributeName : paragraphStyle}];
         }
-        messageLabel.text = self.message;
     } else {
         WRVerticalButton *button = [view viewWithTag:1024];
         if (button == nil) {
@@ -331,8 +366,12 @@ static CGFloat wr_alertController_height = 300;
 
 - (void)action_dismiss {
     [UIView animateWithDuration:0.2 delay:0 options:UIViewAnimationOptionCurveEaseIn animations:^{
-        self.collectionView_leading.constant = 0;
-        self.view.backgroundColor = [UIColor clearColor];
+        if (self.preferredStyle == UIAlertControllerStyleActionSheet) {
+            self.collectionView_leading.constant = 0;
+        } else {
+            self.collectionView.alpha = 0;
+        }
+        self.view.alpha = 0;
         [self.view layoutIfNeeded];
     } completion:^(BOOL finished) {
         if (finished) {
