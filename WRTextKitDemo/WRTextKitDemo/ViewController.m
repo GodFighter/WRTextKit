@@ -9,6 +9,7 @@
 #import "ViewController.h"
 #import "WRVerticalLabel.h"
 #import "WRVerticalButton.h"
+#import "WRAlertController.h"
 
 @interface ViewController ()
 
@@ -20,6 +21,7 @@
 
 - (void)viewDidLoad {
     [super viewDidLoad];
+    
     
 //    self.label.textColor = [UIColor redColor];
 //    self.label.font = [UIFont fontWithName:@"MongolQaganTig" size:24];
@@ -34,7 +36,6 @@
     
     WRVerticalButton *button = [[WRVerticalButton alloc] initWithFrame:CGRectMake(100, 100, 80, 190)];
 
-    button.enabled = NO;
     [button setTitleColor:[UIColor greenColor] forState:UIControlStateHighlighted];
     [button setTitleColor:[UIColor whiteColor] forState:UIControlStateDisabled];
     [button setTitle:@"水电费水电费dfgdfgdfgdg水电费水电费dfgdfgdfgdg" forState:UIControlStateNormal];
@@ -97,8 +98,63 @@
 }
 
 - (void)action_button:(WRVerticalButton *)button {
-    button.selected = !button.selected;
+    [self initAlertController];
 }
 
+- (void)initAlertController {
+//    UIAlertController *alertController = [UIAlertController alertControllerWithTitle:@"标题" message:@"消息" preferredStyle:UIAlertControllerStyleActionSheet];
+//
+//    WRAlertAction *action = [WRAlertAction actionWithTitle:@"动作" style:UIAlertActionStyleDefault handler:^(UIAlertAction * _Nonnull action) {
+//
+//    }];
+//    [alertController addAction:action];
+//
+//    [self presentViewController:alertController animated:YES completion:nil];
+    
+    WRAlertController *alertController = [WRAlertController alertControllerWithTitle:@"标题" message:nil preferredStyle:UIAlertControllerStyleActionSheet];
+
+    WRAlertAction *action = [WRAlertAction actionWithTitle:@"动作" style:UIAlertActionStyleCancel handler:^(UIAlertAction * _Nonnull action) {
+        
+    }];
+    WRAlertAction *action2 = [WRAlertAction actionWithTitle:@"动作2" style:UIAlertActionStyleCancel handler:^(UIAlertAction * _Nonnull action) {
+        
+    }];
+    WRAlertAction *action3 = [WRAlertAction actionWithTitle:@"动作" style:UIAlertActionStyleCancel handler:^(UIAlertAction * _Nonnull action) {
+        
+    }];
+    WRAlertAction *action4 = [WRAlertAction actionWithTitle:@"动作" style:UIAlertActionStyleCancel handler:^(UIAlertAction * _Nonnull action) {
+        
+    }];
+    WRAlertAction *action5 = [WRAlertAction actionWithTitle:@"动作" style:UIAlertActionStyleCancel handler:^(UIAlertAction * _Nonnull action) {
+
+    }];
+    WRAlertAction *action6 = [WRAlertAction actionWithTitle:@"动作" style:UIAlertActionStyleCancel handler:^(UIAlertAction * _Nonnull action) {
+
+    }];
+    WRAlertAction *action7 = [WRAlertAction actionWithTitle:@"动作" style:UIAlertActionStyleCancel handler:^(UIAlertAction * _Nonnull action) {
+
+    }];
+    WRAlertAction *action8 = [WRAlertAction actionWithTitle:@"动作" style:UIAlertActionStyleCancel handler:^(UIAlertAction * _Nonnull action) {
+
+    }];
+
+    [alertController addAction:action];
+    [alertController addAction:action2];
+    [alertController addAction:action3];
+    [alertController addAction:action4];
+    [alertController addAction:action5];
+    [alertController addAction:action6];
+    [alertController addAction:action7];
+    [alertController addAction:action8];
+
+    CATransition *transition = [CATransition animation];
+    transition.duration = 0.1;
+    transition.timingFunction = [CAMediaTimingFunction functionWithName:kCAMediaTimingFunctionEaseIn];
+    transition.type = @"fade";
+
+    [self.view.window.layer addAnimation:transition forKey:nil];
+
+    [self presentViewController:alertController animated:NO completion:nil];
+}
 
 @end

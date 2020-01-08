@@ -59,16 +59,16 @@ IB_DESIGNABLE
 //MARK:-  life
 - (instancetype)init {
     if (self = [super init]) {
-        [self init_defaultValue];
         [self init_UI];
+        [self init_defaultValue];
     }
     return self;
 }
 
 - (instancetype)initWithCoder:(NSCoder *)coder {
     if (self = [super initWithCoder:coder]) {
-        [self init_defaultValue];
         [self init_UI];
+        [self init_defaultValue];
     }
     return self;
 }
@@ -103,6 +103,7 @@ IB_DESIGNABLE
 }
 
 - (void)setHighlighted:(BOOL)highlighted {
+    [super setHighlighted:highlighted];
     if (self.coverButton.highlighted != highlighted) {
         self.coverButton.highlighted = highlighted;
     }
@@ -110,6 +111,7 @@ IB_DESIGNABLE
 }
 
 - (void)setSelected:(BOOL)selected {
+    [super setSelected:selected];
     if (self.coverButton.selected != selected) {
         self.coverButton.selected = selected;
     }
@@ -117,6 +119,7 @@ IB_DESIGNABLE
 }
 
 - (void)setEnabled:(BOOL)enabled {
+    [super setEnabled:enabled];
     if (self.coverButton.enabled != enabled) {
         self.coverButton.enabled = enabled;
     }

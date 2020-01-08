@@ -11,6 +11,7 @@
 		563B992323BE467000DA636C /* WRVerticalLabel.m in Sources */ = {isa = PBXBuildFile; fileRef = 563B991E23BE467000DA636C /* WRVerticalLabel.m */; };
 		563B992423BE467000DA636C /* WRTextLine.m in Sources */ = {isa = PBXBuildFile; fileRef = 563B992023BE467000DA636C /* WRTextLine.m */; };
 		563B992523BE467000DA636C /* WRVerticalButton.m in Sources */ = {isa = PBXBuildFile; fileRef = 563B992123BE467000DA636C /* WRVerticalButton.m */; };
+		BB6A214023C5784600E8947F /* WRAlertController.m in Sources */ = {isa = PBXBuildFile; fileRef = BB6A213F23C5784600E8947F /* WRAlertController.m */; };
 		BBC850A623A0C50600999198 /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = BBC850A523A0C50600999198 /* AppDelegate.m */; };
 		BBC850AC23A0C50600999198 /* ViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = BBC850AB23A0C50600999198 /* ViewController.m */; };
 		BBC850AF23A0C50600999198 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = BBC850AD23A0C50600999198 /* Main.storyboard */; };
@@ -32,6 +33,8 @@
 		563B991F23BE467000DA636C /* WRVerticalButton.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = WRVerticalButton.h; sourceTree = "<group>"; };
 		563B992023BE467000DA636C /* WRTextLine.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = WRTextLine.m; sourceTree = "<group>"; };
 		563B992123BE467000DA636C /* WRVerticalButton.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = WRVerticalButton.m; sourceTree = "<group>"; };
+		BB6A213E23C5784600E8947F /* WRAlertController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = WRAlertController.h; sourceTree = "<group>"; };
+		BB6A213F23C5784600E8947F /* WRAlertController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = WRAlertController.m; sourceTree = "<group>"; };
 		BBC850A123A0C50600999198 /* WRTextKitDemo.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = WRTextKitDemo.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		BBC850A423A0C50600999198 /* AppDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AppDelegate.h; sourceTree = "<group>"; };
 		BBC850A523A0C50600999198 /* AppDelegate.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = AppDelegate.m; sourceTree = "<group>"; };
@@ -105,6 +108,8 @@
 				563B992123BE467000DA636C /* WRVerticalButton.m */,
 				563B991C23BE467000DA636C /* WRVerticalLabel.h */,
 				563B991E23BE467000DA636C /* WRVerticalLabel.m */,
+				BB6A213E23C5784600E8947F /* WRAlertController.h */,
+				BB6A213F23C5784600E8947F /* WRAlertController.m */,
 			);
 			name = WRTextKit;
 			path = ../../WRTextKit;
@@ -197,6 +202,7 @@
 				BBC850AC23A0C50600999198 /* ViewController.m in Sources */,
 				563B992223BE467000DA636C /* WRTextLayout.m in Sources */,
 				BBC850A623A0C50600999198 /* AppDelegate.m in Sources */,
+				BB6A214023C5784600E8947F /* WRAlertController.m in Sources */,
 				563B992523BE467000DA636C /* WRVerticalButton.m in Sources */,
 				563B992323BE467000DA636C /* WRVerticalLabel.m in Sources */,
 				BBC850B723A0C50A00999198 /* main.m in Sources */,
