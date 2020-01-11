@@ -6,7 +6,6 @@
 //  Copyright © 2020 项辉. All rights reserved.
 //
 
-#import "WRTextLayout.h"
 #import "WRVerticalLabel.h"
 
 @interface WRVerticalLabel ()
@@ -196,12 +195,31 @@
     _highlightedTextColor = highlightedTextColor;
 }
 
+- (void)setNumberOfLines:(NSInteger)numberOfLines {
+    _numberOfLines = numberOfLines;
+    self.textLayout.numberOfLines = numberOfLines;
+}
+
+- (void)setLineBreakMode:(NSLineBreakMode)lineBreakMode {
+    _lineBreakMode = lineBreakMode;
+    self.textLayout.lineBreakMode = lineBreakMode;
+}
+
+- (void)setVerticalAlignment:(WRTextVerticalAlignment)verticalAlignment {
+    _verticalAlignment = verticalAlignment;
+    self.textLayout.verticalAlignment = verticalAlignment;
+}
+
+- (void)setHorizontalAlignment:(WRTextHorizontalAlignment)horizontalAlignment {
+    _horizontalAlignment = horizontalAlignment;
+    self.textLayout.horizontalAlignment = horizontalAlignment;
+}
+
 #pragma mark - lazy
 - (WRTextLayout *)textLayout {
     if (!_textLayout) {
         _textLayout = [WRTextLayout new];
         _textLayout.containerSize = CGSizeZero;
-        _textLayout.label = self;
     }
     return _textLayout;
 }

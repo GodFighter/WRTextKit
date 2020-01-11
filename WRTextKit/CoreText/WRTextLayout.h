@@ -8,7 +8,20 @@
 
 #import <UIKit/UIKit.h>
 #import <Foundation/Foundation.h>
-@class WRVerticalLabel;
+
+//MARK:-enum
+typedef NS_ENUM(NSInteger,WRTextVerticalAlignment) {
+    WRTextVerticalAlignmentLeading,
+    WRTextVerticalAlignmentCenter,
+    WRTextVerticalAlignmentTrailing
+};
+
+typedef NS_ENUM(NSInteger,WRTextHorizontalAlignment) {
+    WRTextHorizontalAlignmentLeading,
+    WRTextHorizontalAlignmentCenter,
+    WRTextHorizontalAlignmentTrailing
+};
+
 
 NS_ASSUME_NONNULL_BEGIN
 
@@ -17,14 +30,18 @@ NS_ASSUME_NONNULL_BEGIN
 
 @property (nonatomic, assign) BOOL vertical;
 
-@property (nonatomic, weak) WRVerticalLabel *label;
-
 @property (nonatomic, strong) NSMutableAttributedString *text;
 
 @property (nonatomic, assign) CGSize containerSize;
 
 @property (nonatomic, assign, readonly) CGRect textBoundingRect;
 @property (nonatomic, assign, readonly) CGSize textBoundingSize;
+
+@property (nonatomic) NSInteger numberOfLines;
+@property (nonatomic) NSLineBreakMode lineBreakMode;   // default is NSLineBreakByTruncatingTail
+
+@property (nonatomic) WRTextVerticalAlignment verticalAlignment;
+@property (nonatomic) WRTextHorizontalAlignment horizontalAlignment;
 
 - (void)drawInContext:(CGContextRef)context size:(CGSize)size;
 

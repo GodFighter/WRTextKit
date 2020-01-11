@@ -81,23 +81,23 @@
     self.displayLines = [WRTextLayout lineWithAttributedString:self.displayText size:self.containerSize];
     
     if (self.displayLines.count > 0) {
-        if (self.displayLines.count < self.textLines.count && self.label.numberOfLines == 0) {
+        if (self.displayLines.count < self.textLines.count && self.numberOfLines == 0) {
             WRTextLine *lastLine = self.displayLines.lastObject;
             NSMutableAttributedString *string = [[NSMutableAttributedString alloc] initWithAttributedString:[_text attributedSubstringFromRange:NSMakeRange(0, lastLine.range.location + lastLine.range.length + 1)]];
 
             NSMutableParagraphStyle *paragraphStyle =  [[NSMutableParagraphStyle alloc] init];
-            paragraphStyle.lineBreakMode = self.label.lineBreakMode;
+            paragraphStyle.lineBreakMode = self.lineBreakMode;
             [string addAttribute:NSParagraphStyleAttributeName value:paragraphStyle range:lastLine.range];
             
             self.displayText = string;
 
             self.displayLines = [WRTextLayout lineWithAttributedString:self.displayText size:self.containerSize];
-        } else if (self.textLines.count > self.label.numberOfLines && self.label.numberOfLines != 0) {
-            WRTextLine *lastLine = self.displayLines[MAX(0, self.label.numberOfLines - 1)];
+        } else if (self.textLines.count > self.numberOfLines && self.numberOfLines != 0) {
+            WRTextLine *lastLine = self.displayLines[MAX(0, self.numberOfLines - 1)];
             NSMutableAttributedString *string = [[NSMutableAttributedString alloc] initWithAttributedString:[_text attributedSubstringFromRange:NSMakeRange(0, lastLine.range.location + lastLine.range.length + 1)]];
 
             NSMutableParagraphStyle *paragraphStyle =  [[NSMutableParagraphStyle alloc] init];
-            paragraphStyle.lineBreakMode = self.label.lineBreakMode;
+            paragraphStyle.lineBreakMode = self.lineBreakMode;
             [string addAttribute:NSParagraphStyleAttributeName value:paragraphStyle range:lastLine.range];
             
             self.displayText = string;
@@ -231,7 +231,7 @@
             CTRunRef run = CFArrayGetValueAtIndex(runArray, j);
                    
             CGFloat horizontalOffset = self.vertical ? (size.width - self.textBoundingSize.width) / 2.0 : 0;
-            switch (self.label.horizontalAlignment) {
+            switch (self.horizontalAlignment) {
                 case WRTextHorizontalAlignmentLeading:
                     horizontalOffset = 0;
                     break;
@@ -247,7 +247,7 @@
 
             
             CGFloat verticalOffset = line.position.y;
-            switch (self.label.verticalAlignment) {
+            switch (self.verticalAlignment) {
                 case WRTextVerticalAlignmentCenter:
                     verticalOffset = line.position.y - (size.height - line.bounds.size.height) / 2.0;
                     break;

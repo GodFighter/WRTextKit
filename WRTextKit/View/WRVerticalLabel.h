@@ -7,21 +7,9 @@
 //
 
 #import <UIKit/UIKit.h>
+#import "WRTextLayout.h"
 
 NS_ASSUME_NONNULL_BEGIN
-
-//MARK:-enum
-typedef NS_ENUM(NSInteger,WRTextVerticalAlignment) {
-    WRTextVerticalAlignmentLeading,
-    WRTextVerticalAlignmentCenter,
-    WRTextVerticalAlignmentTrailing
-};
-
-typedef NS_ENUM(NSInteger,WRTextHorizontalAlignment) {
-    WRTextHorizontalAlignmentLeading,
-    WRTextHorizontalAlignmentCenter,
-    WRTextHorizontalAlignmentTrailing
-};
 
 @interface WRVerticalLabel : UIView
 
@@ -34,8 +22,7 @@ typedef NS_ENUM(NSInteger,WRTextHorizontalAlignment) {
 @property (nullable, nonatomic,strong) UIColor *highlightedTextColor; // default is nil
 @property (nonatomic,getter=isHighlighted) BOOL highlighted;          // default is NO
 
-@property(nonatomic) NSInteger numberOfLines;
-
+@property (nonatomic) NSInteger numberOfLines;
 @property (nonatomic) NSLineBreakMode lineBreakMode;   // default is NSLineBreakByTruncatingTail
 
 @property (nonatomic) WRTextVerticalAlignment verticalAlignment;
