@@ -13,6 +13,24 @@ Pod::Spec.new do |s|
     s.requires_arc = true
     s.ios.deployment_target = '9.0'
 
-    s.source_files = 'WRTextKit/*.{h,m}'
+    s.public_header_files = 'WRTextKit/WRTextKit.h'
+    s.source_files = 'WRTextKit/WRTextKit.h'
+
+    s.subspec 'CoreText' do |ss|
+      ss.source_files = 'WRTextKit/CoreText/*.{h,m}'
+      ss.public_header_files = 'WRTextKit/CoreText/*.h'
+    end
+
+    s.subspec 'Views' do |ss|
+      ss.dependency 'WRTextKit/CoreText'
+      ss.source_files = 'WRTextKit/Views/*.{h,m}'
+      ss.public_header_files = 'WRTextKit/Views/*.h'
+    end
+
+    s.subspec 'Controllers' do |ss|
+      ss.dependency 'WRTextKit/Views'
+      ss.source_files = 'WRTextKit/Controllers/*.{h,m}'
+      ss.public_header_files = 'WRTextKit/Controllers/*.h'
+    end
 
 end
