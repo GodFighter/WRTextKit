@@ -33,7 +33,6 @@
 		563B991F23BE467000DA636C /* WRVerticalButton.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = WRVerticalButton.h; sourceTree = "<group>"; };
 		563B992023BE467000DA636C /* WRTextLine.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = WRTextLine.m; sourceTree = "<group>"; };
 		563B992123BE467000DA636C /* WRVerticalButton.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = WRVerticalButton.m; sourceTree = "<group>"; };
-		5695375423C99916000FDD0A /* WRTextKit.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = WRTextKit.h; sourceTree = "<group>"; };
 		BB6A213E23C5784600E8947F /* WRAlertController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = WRAlertController.h; sourceTree = "<group>"; };
 		BB6A213F23C5784600E8947F /* WRAlertController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = WRAlertController.m; sourceTree = "<group>"; };
 		BBC850A123A0C50600999198 /* WRTextKitDemo.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = WRTextKitDemo.app; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -101,7 +100,6 @@
 		BBC850BD23A0C66900999198 /* WRTextKit */ = {
 			isa = PBXGroup;
 			children = (
-				5695375423C99916000FDD0A /* WRTextKit.h */,
 				563B991D23BE467000DA636C /* WRTextLayout.h */,
 				563B991B23BE467000DA636C /* WRTextLayout.m */,
 				563B991A23BE467000DA636C /* WRTextLine.h */,
