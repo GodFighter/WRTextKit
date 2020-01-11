@@ -63,20 +63,13 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
-		5695375523C9993A000FDD0A /* CoreText */ = {
+		5695375623C9994C000FDD0A /* View */ = {
 			isa = PBXGroup;
 			children = (
 				563B991D23BE467000DA636C /* WRTextLayout.h */,
 				563B991B23BE467000DA636C /* WRTextLayout.m */,
 				563B991A23BE467000DA636C /* WRTextLine.h */,
 				563B992023BE467000DA636C /* WRTextLine.m */,
-			);
-			path = CoreText;
-			sourceTree = "<group>";
-		};
-		5695375623C9994C000FDD0A /* View */ = {
-			isa = PBXGroup;
-			children = (
 				563B991C23BE467000DA636C /* WRVerticalLabel.h */,
 				563B991E23BE467000DA636C /* WRVerticalLabel.m */,
 				563B992123BE467000DA636C /* WRVerticalButton.m */,
@@ -133,7 +126,6 @@
 			isa = PBXGroup;
 			children = (
 				5695375423C99916000FDD0A /* WRTextKit.h */,
-				5695375523C9993A000FDD0A /* CoreText */,
 				5695375623C9994C000FDD0A /* View */,
 				5695375723C99959000FDD0A /* Controller */,
 			);
