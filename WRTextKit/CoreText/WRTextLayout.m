@@ -8,7 +8,6 @@
 
 #import "WRTextLine.h"
 #import "WRTextLayout.h"
-#import "WRVerticalLabel.h"
 
 @interface WRTextLayout()
 
