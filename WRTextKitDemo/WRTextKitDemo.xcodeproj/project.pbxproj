@@ -33,6 +33,7 @@
 		563B991F23BE467000DA636C /* WRVerticalButton.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = WRVerticalButton.h; sourceTree = "<group>"; };
 		563B992023BE467000DA636C /* WRTextLine.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = WRTextLine.m; sourceTree = "<group>"; };
 		563B992123BE467000DA636C /* WRVerticalButton.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = WRVerticalButton.m; sourceTree = "<group>"; };
+		5695375423C99916000FDD0A /* WRTextKit.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = WRTextKit.h; sourceTree = "<group>"; };
 		BB6A213E23C5784600E8947F /* WRAlertController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = WRAlertController.h; sourceTree = "<group>"; };
 		BB6A213F23C5784600E8947F /* WRAlertController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = WRAlertController.m; sourceTree = "<group>"; };
 		BBC850A123A0C50600999198 /* WRTextKitDemo.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = WRTextKitDemo.app; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -62,6 +63,37 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		5695375523C9993A000FDD0A /* CoreText */ = {
+			isa = PBXGroup;
+			children = (
+				563B991D23BE467000DA636C /* WRTextLayout.h */,
+				563B991B23BE467000DA636C /* WRTextLayout.m */,
+				563B991A23BE467000DA636C /* WRTextLine.h */,
+				563B992023BE467000DA636C /* WRTextLine.m */,
+			);
+			path = CoreText;
+			sourceTree = "<group>";
+		};
+		5695375623C9994C000FDD0A /* View */ = {
+			isa = PBXGroup;
+			children = (
+				563B991C23BE467000DA636C /* WRVerticalLabel.h */,
+				563B991E23BE467000DA636C /* WRVerticalLabel.m */,
+				563B992123BE467000DA636C /* WRVerticalButton.m */,
+				563B991F23BE467000DA636C /* WRVerticalButton.h */,
+			);
+			path = View;
+			sourceTree = "<group>";
+		};
+		5695375723C99959000FDD0A /* Controller */ = {
+			isa = PBXGroup;
+			children = (
+				BB6A213E23C5784600E8947F /* WRAlertController.h */,
+				BB6A213F23C5784600E8947F /* WRAlertController.m */,
+			);
+			path = Controller;
+			sourceTree = "<group>";
+		};
 		BBC8509823A0C50600999198 = {
 			isa = PBXGroup;
 			children = (
@@ -100,16 +132,10 @@
 		BBC850BD23A0C66900999198 /* WRTextKit */ = {
 			isa = PBXGroup;
 			children = (
-				563B991D23BE467000DA636C /* WRTextLayout.h */,
-				563B991B23BE467000DA636C /* WRTextLayout.m */,
-				563B991A23BE467000DA636C /* WRTextLine.h */,
-				563B992023BE467000DA636C /* WRTextLine.m */,
-				563B991F23BE467000DA636C /* WRVerticalButton.h */,
-				563B992123BE467000DA636C /* WRVerticalButton.m */,
-				563B991C23BE467000DA636C /* WRVerticalLabel.h */,
-				563B991E23BE467000DA636C /* WRVerticalLabel.m */,
-				BB6A213E23C5784600E8947F /* WRAlertController.h */,
-				BB6A213F23C5784600E8947F /* WRAlertController.m */,
+				5695375423C99916000FDD0A /* WRTextKit.h */,
+				5695375523C9993A000FDD0A /* CoreText */,
+				5695375623C9994C000FDD0A /* View */,
+				5695375723C99959000FDD0A /* Controller */,
 			);
 			name = WRTextKit;
 			path = ../../WRTextKit;
