@@ -106,8 +106,8 @@
 				563B992023BE467000DA636C /* WRTextLine.m */,
 				563B991C23BE467000DA636C /* WRVerticalLabel.h */,
 				563B991E23BE467000DA636C /* WRVerticalLabel.m */,
-				563B992123BE467000DA636C /* WRVerticalButton.m */,
 				563B991F23BE467000DA636C /* WRVerticalButton.h */,
+				563B992123BE467000DA636C /* WRVerticalButton.m */,
 				BB6A213E23C5784600E8947F /* WRAlertController.h */,
 				BB6A213F23C5784600E8947F /* WRAlertController.m */,
 			);

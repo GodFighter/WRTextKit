@@ -6,7 +6,6 @@
 //  Copyright © 2019 项辉. All rights reserved.
 //
 
-#import "WRVerticalLabel.h"
 #import "WRVerticalButton.h"
 
 //MARK: -
