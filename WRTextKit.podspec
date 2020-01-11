@@ -1,6 +1,6 @@
 Pod::Spec.new do |s|
     s.name         = 'WRTextKit'
-    s.version      = "1.2.5"
+    s.version      = "1.3.3"
     s.summary      = '竖向蒙文标签控件'
     s.description  = '竖向蒙文标签控件，支持上下左右对齐'
     s.homepage     = 'https://github.com/GodFighter/WRTextKit'
@@ -16,13 +16,21 @@ Pod::Spec.new do |s|
     s.public_header_files = 'WRTextKit/WRTextKit.h'
     s.source_files = 'WRTextKit/WRTextKit.h'
 
+    s.subspec 'CoreText' do |ss|
+        ss.source_files = 'WRTextKit/CoreText/*.{h,m}'
+        ss.public_header_files = 'WRTextKit/CoreText/*.h'
+    end
+
     s.subspec 'View' do |ss|
+        ss.dependency 'WRTextKit/CoreText'
         ss.source_files = 'WRTextKit/View/*.{h,m}'
+        ss.public_header_files = 'WRTextKit/View/*.h'
     end
 
     s.subspec 'Controller' do |ss|
         ss.dependency 'WRTextKit/View'
         ss.source_files = 'WRTextKit/Controller/*.{h,m}'
+        ss.public_header_files = 'WRTextKit/Controller/*.h'
     end
 
 
