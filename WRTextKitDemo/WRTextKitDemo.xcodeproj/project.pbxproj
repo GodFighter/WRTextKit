@@ -7,9 +7,11 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
-		5695375B23C99C07000FDD0A /* CoreText in Resources */ = {isa = PBXBuildFile; fileRef = 5695375823C99C07000FDD0A /* CoreText */; };
-		5695375C23C99C07000FDD0A /* Controller in Resources */ = {isa = PBXBuildFile; fileRef = 5695375923C99C07000FDD0A /* Controller */; };
-		5695375D23C99C07000FDD0A /* View in Resources */ = {isa = PBXBuildFile; fileRef = 5695375A23C99C07000FDD0A /* View */; };
+		563B992223BE467000DA636C /* WRTextLayout.m in Sources */ = {isa = PBXBuildFile; fileRef = 563B991B23BE467000DA636C /* WRTextLayout.m */; };
+		563B992323BE467000DA636C /* WRVerticalLabel.m in Sources */ = {isa = PBXBuildFile; fileRef = 563B991E23BE467000DA636C /* WRVerticalLabel.m */; };
+		563B992423BE467000DA636C /* WRTextLine.m in Sources */ = {isa = PBXBuildFile; fileRef = 563B992023BE467000DA636C /* WRTextLine.m */; };
+		563B992523BE467000DA636C /* WRVerticalButton.m in Sources */ = {isa = PBXBuildFile; fileRef = 563B992123BE467000DA636C /* WRVerticalButton.m */; };
+		BB6A214023C5784600E8947F /* WRAlertController.m in Sources */ = {isa = PBXBuildFile; fileRef = BB6A213F23C5784600E8947F /* WRAlertController.m */; };
 		BBC850A623A0C50600999198 /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = BBC850A523A0C50600999198 /* AppDelegate.m */; };
 		BBC850AC23A0C50600999198 /* ViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = BBC850AB23A0C50600999198 /* ViewController.m */; };
 		BBC850AF23A0C50600999198 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = BBC850AD23A0C50600999198 /* Main.storyboard */; };
@@ -23,10 +25,17 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		563B991A23BE467000DA636C /* WRTextLine.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = WRTextLine.h; sourceTree = "<group>"; };
+		563B991B23BE467000DA636C /* WRTextLayout.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = WRTextLayout.m; sourceTree = "<group>"; };
+		563B991C23BE467000DA636C /* WRVerticalLabel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = WRVerticalLabel.h; sourceTree = "<group>"; };
+		563B991D23BE467000DA636C /* WRTextLayout.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = WRTextLayout.h; sourceTree = "<group>"; };
+		563B991E23BE467000DA636C /* WRVerticalLabel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = WRVerticalLabel.m; sourceTree = "<group>"; };
+		563B991F23BE467000DA636C /* WRVerticalButton.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = WRVerticalButton.h; sourceTree = "<group>"; };
+		563B992023BE467000DA636C /* WRTextLine.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = WRTextLine.m; sourceTree = "<group>"; };
+		563B992123BE467000DA636C /* WRVerticalButton.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = WRVerticalButton.m; sourceTree = "<group>"; };
 		5695375423C99916000FDD0A /* WRTextKit.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = WRTextKit.h; sourceTree = "<group>"; };
-		5695375823C99C07000FDD0A /* CoreText */ = {isa = PBXFileReference; lastKnownFileType = folder; path = CoreText; sourceTree = "<group>"; };
-		5695375923C99C07000FDD0A /* Controller */ = {isa = PBXFileReference; lastKnownFileType = folder; path = Controller; sourceTree = "<group>"; };
-		5695375A23C99C07000FDD0A /* View */ = {isa = PBXFileReference; lastKnownFileType = folder; path = View; sourceTree = "<group>"; };
+		BB6A213E23C5784600E8947F /* WRAlertController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = WRAlertController.h; sourceTree = "<group>"; };
+		BB6A213F23C5784600E8947F /* WRAlertController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = WRAlertController.m; sourceTree = "<group>"; };
 		BBC850A123A0C50600999198 /* WRTextKitDemo.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = WRTextKitDemo.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		BBC850A423A0C50600999198 /* AppDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AppDelegate.h; sourceTree = "<group>"; };
 		BBC850A523A0C50600999198 /* AppDelegate.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = AppDelegate.m; sourceTree = "<group>"; };
@@ -54,6 +63,37 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		5695375523C9993A000FDD0A /* CoreText */ = {
+			isa = PBXGroup;
+			children = (
+				563B991D23BE467000DA636C /* WRTextLayout.h */,
+				563B991B23BE467000DA636C /* WRTextLayout.m */,
+				563B991A23BE467000DA636C /* WRTextLine.h */,
+				563B992023BE467000DA636C /* WRTextLine.m */,
+			);
+			path = CoreText;
+			sourceTree = "<group>";
+		};
+		5695375623C9994C000FDD0A /* View */ = {
+			isa = PBXGroup;
+			children = (
+				563B991C23BE467000DA636C /* WRVerticalLabel.h */,
+				563B991E23BE467000DA636C /* WRVerticalLabel.m */,
+				563B992123BE467000DA636C /* WRVerticalButton.m */,
+				563B991F23BE467000DA636C /* WRVerticalButton.h */,
+			);
+			path = View;
+			sourceTree = "<group>";
+		};
+		5695375723C99959000FDD0A /* Controller */ = {
+			isa = PBXGroup;
+			children = (
+				BB6A213E23C5784600E8947F /* WRAlertController.h */,
+				BB6A213F23C5784600E8947F /* WRAlertController.m */,
+			);
+			path = Controller;
+			sourceTree = "<group>";
+		};
 		BBC8509823A0C50600999198 = {
 			isa = PBXGroup;
 			children = (
@@ -93,9 +133,9 @@
 			isa = PBXGroup;
 			children = (
 				5695375423C99916000FDD0A /* WRTextKit.h */,
-				5695375823C99C07000FDD0A /* CoreText */,
-				5695375A23C99C07000FDD0A /* View */,
-				5695375923C99C07000FDD0A /* Controller */,
+				5695375523C9993A000FDD0A /* CoreText */,
+				5695375623C9994C000FDD0A /* View */,
+				5695375723C99959000FDD0A /* Controller */,
 			);
 			name = WRTextKit;
 			path = ../../WRTextKit;
@@ -171,13 +211,10 @@
 				BBCB1F4D23BED9CB004970B4 /* ViewController.xib in Resources */,
 				BBC850B423A0C50A00999198 /* LaunchScreen.storyboard in Resources */,
 				BBC850B123A0C50A00999198 /* Assets.xcassets in Resources */,
-				5695375D23C99C07000FDD0A /* View in Resources */,
 				BBEBAFED23B1C16300B2C99B /* DelehiSoninQaganTig.ttf in Resources */,
 				BBEBAFEF23B1C63300B2C99B /* DelehiQaganTig.ttf in Resources */,
 				BBC850CA23A0CCDD00999198 /* MongolQaganTig.ttf in Resources */,
-				5695375B23C99C07000FDD0A /* CoreText in Resources */,
 				BBC850AF23A0C50600999198 /* Main.storyboard in Resources */,
-				5695375C23C99C07000FDD0A /* Controller in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -189,8 +226,13 @@
 			buildActionMask = 2147483647;
 			files = (
 				BBC850AC23A0C50600999198 /* ViewController.m in Sources */,
+				563B992223BE467000DA636C /* WRTextLayout.m in Sources */,
 				BBC850A623A0C50600999198 /* AppDelegate.m in Sources */,
+				BB6A214023C5784600E8947F /* WRAlertController.m in Sources */,
+				563B992523BE467000DA636C /* WRVerticalButton.m in Sources */,
+				563B992323BE467000DA636C /* WRVerticalLabel.m in Sources */,
 				BBC850B723A0C50A00999198 /* main.m in Sources */,
+				563B992423BE467000DA636C /* WRTextLine.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

@@ -21,15 +21,15 @@ Pod::Spec.new do |s|
     end
 
     s.subspec 'View' do |ss|
-        ss.source_files = 'WRTextKit/View/*.{h,m}'
         ss.dependency 'WRTextKit/CoreText'
+        ss.source_files = 'WRTextKit/View/*.{h,m}'
         ss.public_header_files = 'WRTextKit/View/*.{h,m}'
     end
 
     s.subspec 'Controller' do |ss|
-        ss.source_files = 'WRTextKit/Controller/*.{h,m}'
         ss.dependency 'WRTextKit/View'
-ss.public_header_files = 'WRTextKit/Controller/*.{h,m}'
+        ss.source_files = 'WRTextKit/Controller/*.{h,m}'
+        ss.public_header_files = 'WRTextKit/Controller/*.{h,m}'
     end
 
 
