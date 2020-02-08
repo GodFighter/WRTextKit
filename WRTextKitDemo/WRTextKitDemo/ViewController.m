@@ -15,9 +15,16 @@
 
 @property (weak, nonatomic) IBOutlet WRVerticalLabel *label;
 
+@property (strong, nonatomic) WRVerticalButton *buttons;
+
 @end
 
 @implementation ViewController
+
+- (void)viewDidAppear:(BOOL)animated {
+    [super viewDidAppear:animated];
+    
+}
 
 - (void)viewDidLoad {
     [super viewDidLoad];
@@ -35,14 +42,20 @@
     
     
     WRVerticalButton *button = [[WRVerticalButton alloc] initWithFrame:CGRectMake(100, 100, 80, 190)];
-
-    [button setTitleColor:[UIColor greenColor] forState:UIControlStateHighlighted];
-    [button setTitleColor:[UIColor whiteColor] forState:UIControlStateDisabled];
-    [button setTitle:@"水电费水电费dfgdfgdfgdg水电费水电费dfgdfgdfgdg" forState:UIControlStateNormal];
-    [button setTitle:@"2323" forState:UIControlStateDisabled];
-    button.font = [UIFont fontWithName:@"MongolQaganTig" size:20];
     button.backgroundColor = [UIColor redColor];
+    
+    [button setImage:[UIImage imageNamed:@"goods_select"] forState:UIControlStateNormal];
+    [button setTitle:@"2323" forState:UIControlStateNormal];
+    [button setTitleColor:[UIColor whiteColor] forState:UIControlStateNormal];
+[button setTitleColor:[[UIColor whiteColor] colorWithAlphaComponent:0.3] forState:UIControlStateHighlighted];
+    //    [button setTitleColor:[UIColor whiteColor] forState:UIControlStateDisabled];
+//    [button setTitle:@"水电费水电费dfgdfgdfgdg水电费水电费dfgdfgdfgdg" forState:UIControlStateNormal];
+//    [button setTitle:@"2323" forState:UIControlStateDisabled];
+//    button.font = [UIFont fontWithName:@"MongolQaganTig" size:20];
+//    button.backgroundColor = [UIColor redColor];
     [self.view addSubview:button];
+    self.buttons = button;
+    button.isImageTop = true;
 
     [button addTarget:self action:@selector(action_button:) forControlEvents:UIControlEventTouchUpInside];
 //    
@@ -98,7 +111,7 @@
 }
 
 - (void)action_button:(WRVerticalButton *)button {
-    [self initAlertController];
+//    [self initAlertController];
 }
 
 - (void)initAlertController {

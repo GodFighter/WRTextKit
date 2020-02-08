@@ -16,6 +16,8 @@ NS_ASSUME_NONNULL_BEGIN
 @property (strong, nonatomic) UIFont *font;
 @property (nonatomic) NSInteger numberOfLines;
 @property (weak, nonatomic, readonly) WRVerticalLabel *titleLabel;
+/// default yes
+@property (nonatomic) BOOL isImageTop;
 
 - (void)setTitle:(nullable NSString *)title forState:(UIControlState)state;
 - (void)setAttributedTitle:(nullable NSAttributedString *)title forState:(UIControlState)state;
