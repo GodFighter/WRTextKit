@@ -17,6 +17,8 @@
 
 @property (strong, nonatomic) WRVerticalButton *buttons;
 
+@property (strong, nonatomic) WRVerticalButton *verticalButton;
+
 @end
 
 @implementation ViewController
@@ -58,6 +60,7 @@
     button.isImageTop = true;
 
     [button addTarget:self action:@selector(action_button:) forControlEvents:UIControlEventTouchUpInside];
+    self.verticalButton = button;
 //    
 
 //    NSString *stirng= @"水电费水电费是分身乏术地方电饭锅电饭锅电饭锅好水电费水电费是分身乏术地方电饭锅电饭锅分身乏术地方电饭锅电饭锅电饭锅好水电费水电费是分身乏分身乏术地方电饭锅电饭锅电饭锅好水电费水电费是分身乏分身乏术地方电饭锅电饭锅电饭锅好水电费水电费是分身乏";
@@ -110,7 +113,7 @@
     */
 }
 
-- (void)action_button:(WRVerticalButton *)button {
+- (void)action_button:(id)button {
 //    [self initAlertController];
 }
 

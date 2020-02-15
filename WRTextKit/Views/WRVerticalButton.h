@@ -33,6 +33,8 @@ NS_ASSUME_NONNULL_BEGIN
 - (nullable UIImage *)imageForState:(UIControlState)state;
 - (nullable UIImage *)backgroundImageForState:(UIControlState)state;
 
+- (BOOL)isEqual:(id)object;
+
 @end
 
 NS_ASSUME_NONNULL_END

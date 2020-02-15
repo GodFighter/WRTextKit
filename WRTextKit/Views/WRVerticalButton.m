@@ -346,6 +346,18 @@ IB_DESIGNABLE
     return [self.coverButton backgroundImageForState:state];
 }
 
+- (BOOL)isEqual:(id)object {
+    if ([object isKindOfClass:UIButton.class]) {
+        if ([object isKindOfClass:WRButton.class]) {
+            WRButton *button = (WRButton *)object;
+            return button.verticalButton == self;
+        } else if ([object isKindOfClass:WRVerticalButton.class]) {
+            return object == self;
+        }
+        return  NO;
+    }
+    return NO;
+}
 //MARK:-  lazy
 - (WRVerticalLabel *)titleLabel {
     if (_titleLabel == nil) {
